@@ -60,8 +60,6 @@
 			var keycode = window.event.keyCode;
 			if(keycode == 13) $("#search_btn").click();
 		}
-
-		
 	</script>
 </head>
 <body>
