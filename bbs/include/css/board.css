@@ -40,9 +40,9 @@ ul.tab li {
 
 ul.tab li a {
 	text-decoration: none;
-	color: #000;
+	color: #fff;
 	display: block;
-	font-size: 1.2em;
+	font-size: 1.4em;
 	padding: 0 20px;
 	border: 1px solid #fff;
 	outline: none;
@@ -50,6 +50,7 @@ ul.tab li a {
 
 ul.tab li a:hover {
 	background: #ccc;
+	color: #000000;
 }
 
 html ul.tab li.active, html ul.tab li.active a:hover {
@@ -57,54 +58,97 @@ html ul.tab li.active, html ul.tab li.active a:hover {
 	border-bottom: 1px solid #fff;
 }
 
+html ul.tab li.active a {
+	color: #000000;
+}
+
 #container {
-	border: 1px solid #999;
 	border-top: none;
 	overflow: hidden;
 	clear: both;
 	float: left;
 	width: 100%;
 	background: #fff;
+	display: inline;
 }
 
 .tab_content {
-	padding: 20px;
 	font-size: 1.2em;
+	/*
+	border: 1px solid #000; 
+	border-top-style: none;
+	*/
 }
 
 /*list_v - table*/
-
 #view_table {
-	margin-top: 20px;
 	width: 100%;
-	border : 1px solid black;
-	border-collapse :collapse;
-	text-align :center;
-	padding :15px;
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+	padding: 15px;
 }
 
-#view_table th, td{
-	padding :15px;
+#view_table th, td {
+	padding: 15px;
 }
 
-#view_table thead th{
+#view_table thead th {
 	background: #ABC668;
 }
 
-#view_table tbody tr:nth-child(even){
+#view_table tbody tr:nth-child(even) {
 	background-color: #eee;
 }
 
-#view_table tbody tr:nth-child(odd){
-	background-color: #fff;	
+#view_table tbody tr:nth-child(odd) {
+	background-color: #fff;
 }
 
-#view_table tbody tr:hover{
-	background:#F3F5BB;
+#view_table tbody tr:hover {
+	background: #F3F5BB;
 }
 
-#view_table tbody tr:hover > :first-child{
+#view_table tbody tr:hover>:first-child {
 	background: #F2F684;
 	color: #1BA6B2;
 }
+/*header- div_sub_tab */
+#div_sub_tab{
+}
 
+#div_sub_tab ul{
+	top: 2px;
+	list-style:none;
+}
+
+#div_sub_tab ul li>:first-child {
+}
+
+#div_sub_tab ul li a{
+	border: 1px solid #000000;
+	font-size: 1.1em;
+	padding: 5px;
+	background-color: #FFDC46;
+}
+
+/*header - div_login*/
+#div_login{
+	list-style:none;
+}
+
+#show_login{
+	list-style:none;
+	display:inline;
+}
+.tab_login{
+	margin-top: 10px;
+}
+.tab_login>:first-child{
+	list-style:none;
+	display:inline;
+}
+
+#input_password, #input_id, #btn_login{
+	height: 20px;
+}

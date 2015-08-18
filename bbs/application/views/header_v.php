@@ -15,6 +15,9 @@
 		.none{
 			display : none;
 		}
+		.inline{
+			display : inline;
+		}
 	</style>
 	<script>
 		$(document).ready(function(){
@@ -40,8 +43,9 @@
 			$("#re_write_btn").click(function(){
 				console.log("re_write_btn");
 			});
-			$("#login").click(function(){
+			$("#btn_login").click(function(){
 				console.log("login");
+				
 			});
 			$("#show_login").click(function(){
 // 				console.log("show_login");
@@ -49,7 +53,9 @@
 				if($divLogin.hasClass("none") == true){
 // 					console.log("있음");
 					$divLogin.removeClass("none");
+					$divLogin.addClass("inline");
 				}else{
+					$divLogin.removeClass("inline");
 					$divLogin.addClass("none");
 				}
 				
@@ -64,28 +70,35 @@
 </head>
 <body>
 	<div id="header">
-		<div id="container" style="height: 35px">
+		<div id="container">
             <ul class="tab">
                 <li class="active"><a href="#tab1">게시판</a></li>
                 <li><a href="#tab2">회원정보</a></li>
             </ul>
-            <ul>
-            	<li><span id="show_login" > | 로그인 | </span></li>
-            	<li><span id="show_login" > | 바로가기 | </span></li>
-            	<li><span id="show_login" > | 쓰기 | </span></li>
-            </ul>
-			<ul id="div_login"  style="position: relative; left : 50px; top: -25px; list-style:none; width:1000px; float:left;" class = "none">
-		 		<li><input type="text" class="input" id="input_id" name="subject" placeholder="id" />
-		 		<input type="password" class="input" id="input_password" name="subject" placeholder="password" />
-		 		<button id="login" class="btn btn-primary">로그인</button>
+            <ul class="tab_login">
+            	<li>
+            		<span id="show_login" > | 로그인 | </span>
+<!--             	<li><span id="show_login" > | 바로가기 | </span></li> -->
+<!--             	<li><span id="show_login" > | 쓰기 | </span></li> -->
+			 	</li>
+				<li id="div_login" class="none" >
+			 		<input type="text" class="input" id="input_id" name="id" placeholder="id" />
+			 		<input type="password" class="input" id="input_password" name="password" placeholder="password" />
+			 		<button id="btn_login" class="btn">로그인</button>
 		 		</li>
+            </ul>
+			<ul >
+		 		
 	 		</ul>
-	 		
+		</div>
+		<div>
+			<div id="div_sub_tab">
+				<ul>
+					<li><a href="/bbs/<?php echo $this->uri->segment(1);?>/lists/<?php echo $this->uri->segment(3);?>">게시판 프로젝트</a>
+					<a href="/bbs/board/write/<?php echo $this->uri->segment(3)?>">쓰기</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
-	<div id="">
-		<ul style="list-style:none;">
-			<li><a rel="external" href="/bbs/<?php echo $this->uri->segment(1);?>/lists/<?php echo $this->uri->segment(3);?>">게시판 프로젝트</a>
-			<a href="/bbs/board/write/<?php echo $this->uri->segment(3)?>">쓰기</a></li>
-		</ul>
-	</div>
+	
+	
