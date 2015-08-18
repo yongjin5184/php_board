@@ -10,7 +10,7 @@
 	<![endif]-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<!-- <link rel='stylesheet' href="/bbs/include/css/bootstrap.css" /> -->
-	<link rel='stylesheet' href="../../include/css/board.css" />
+	<link rel='stylesheet' href="../../../include/css/board.css" />
 	<style type="text/css">
 		.none{
 			display : none;
