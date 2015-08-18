@@ -1,3 +1,11 @@
+.none{
+			display : none;
+}
+.inline{
+	display : inline;
+}
+
+/* tab */
 ul.tab {
 	margin: 0;
 	padding: 0;
