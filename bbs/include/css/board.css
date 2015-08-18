@@ -71,3 +71,40 @@ html ul.tab li.active, html ul.tab li.active a:hover {
 	padding: 20px;
 	font-size: 1.2em;
 }
+
+/*list_v - table*/
+
+#view_table {
+	margin-top: 20px;
+	width: 100%;
+	border : 1px solid black;
+	border-collapse :collapse;
+	text-align :center;
+	padding :15px;
+}
+
+#view_table th, td{
+	padding :15px;
+}
+
+#view_table thead th{
+	background: #ABC668;
+}
+
+#view_table tbody tr:nth-child(even){
+	background-color: #eee;
+}
+
+#view_table tbody tr:nth-child(odd){
+	background-color: #fff;	
+}
+
+#view_table tbody tr:hover{
+	background:#F3F5BB;
+}
+
+#view_table tbody tr:hover > :first-child{
+	background: #F2F684;
+	color: #1BA6B2;
+}
+
