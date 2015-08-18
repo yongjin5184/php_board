@@ -40,13 +40,35 @@
 					alert(("#q").val());
 				}
 			});
+			
 			$("#re_write_btn").click(function(){
 				console.log("re_write_btn");
 			});
+			
 			$("#btn_login").click(function(){
 				console.log("login");
+				console.log("id = " + $("#input_id").val());
+				console.log("password = " + $("#input_password").val());
+				var $login_obj = {
+					'id' : $("#input_id").val(),
+					'password' : $("#input_password").val()
+				};
+
+				$.ajax({
+					type : 'post',
+					data : JSON.stringify($login_obj),
+					dataType : 'text',
+					contentType : 'application/json',
+					url:'./board',
+					success : function(data){
+						alert("성공입니다");
+					}
+				});
 				
+
+									
 			});
+			
 			$("#show_login").click(function(){
 // 				console.log("show_login");
 				var $divLogin = $("#div_login");
@@ -58,7 +80,6 @@
 					$divLogin.removeClass("inline");
 					$divLogin.addClass("none");
 				}
-				
 			});
 		});
 		
