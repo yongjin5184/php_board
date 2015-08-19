@@ -65,7 +65,12 @@ Class Board extends CI_Controller {
     }else{
     	$my_page = 0; 
     }
-    
+    if($_POST){
+    	echo ": " + $this->input->post('id', TRUE);
+    }else {
+    	echo ": " + $this->input->post('id', TRUE);
+    	echo ": " + $this->input->post('password', TRUE);
+    }
 //     echo "마이페이지: " . $my_page; // 0, 1, 2, 3
     
     $limit = $config['per_page'];
@@ -74,6 +79,7 @@ Class Board extends CI_Controller {
     $data['total_rows'] = $total_rows;
     $data['page'] = $my_page; //2.페이징 변수를 넘겨서 게시판 자동 넘버 처리
     $this->load->view('board/list_v', $data);
+    
   }
   
 /**
