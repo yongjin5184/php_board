@@ -33,7 +33,7 @@
               	?>
               </th>
               <td>
-              <form id="myForm" action="/bbs/<?=$board_name;?>/view/<?=$table_name?>/board_id/<?=$lt->id;?>" method="post" name="myForm">
+              <form id="myForm" action="/php_board/bbs/<?=$board_name;?>/view/<?=$table_name?>/board_id/<?=$lt->id;?>" method="post" name="myForm">
               <input type="hidden" name="rownum" value="<?=$index_rownum?>"/>
               <a rel="external" id="a_tag_sub1" href="javascript: document.getElementById('myForm').submit();"><?=$lt->subject;?></a>
               </form>

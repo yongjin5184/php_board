@@ -43,7 +43,7 @@
 					<tr>
 						<td>
 						<hr style="border-top: dotted 2px black;"/>
-						<img src="/bbs/include/images/smiley.gif" alt="Smiley face" width="42" height="42">
+						<img src="/php_board/bbs/include/images/smiley.gif" alt="Smiley face" width="42" height="42" alt="smile">
 						<span><?=$rs->bc_user_id;?></span> &nbsp <span><?=$rs->bc_reg_date;?></span> 
 						<br/>
 						<span><?=$rs->bc_contents;?></span>
@@ -58,11 +58,11 @@
 						(전체  - rownum) / 5 + 1 
 					 -->
 						<th><a
-							href="/bbs/board/lists/<?=$this->uri->segment(3)?><?php if($my_page != 0){ echo "/page/".$my_page; };  ?>"
+							href="/php_board/bbs/board/lists/<?=$this->uri->segment(3)?><?php if($my_page != 0){ echo "/page/".$my_page; };  ?>"
 							class="btn btn-primary">목록</a> <a
-							href="/bbs/board/modify/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
+							href="/php_board/bbs/board/modify/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
 							class="btn btn-warning">수정</a> <a
-							href="/bbs/board/delete/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
+							href="/php_board/bbs/board/delete/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
 							class="btn btn-danger">삭제</a> 
 							<!-- <a
 							href="/bbs/board/write/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"

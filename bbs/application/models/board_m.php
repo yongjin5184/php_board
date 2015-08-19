@@ -108,23 +108,24 @@ class Board_m extends CI_Model {
 		
 		return $result;
 	}
-	
-	function select_users($arrays){
+// 	$this->memdb_slave->select('no, ban_id, ban_name, joinday, StrJoinSite, delday, state, ban_del, ban_delday, ban_del_reason');
+// 	$this->memdb_slave->where('ban_id', $id);
+// 	$this->memdb_slave->where('ban_del', 'N');
+// 	$qry = $this->memdb_slave->get('ban_member');
+// 	return $qry->result_array();
+	function select_users($users_id = null , $users_password = null){
 		// 여기서 데이터베이스 처리하고 다시 뷰로 넘겨줘야함.
-		$query = $this->db->get_where('users', $arrays);
-		$result = $query->result();
- 		$t = $this-> db ->last_query();
+		$this->db->select('*');
+		$this->db->where('users_id', $users_id);
+		$this->db->where('users_password', $users_password);
+		$query = $this->db->get("users");
+		$result = $query->row_array();
 		if(!empty($result)){
-			foreach ($result as $row){
-				$data = array(
-					'name' => $row-> users_name,
-					'email' => $row->users_email
-				);
-				return $data;
-			}
+			return $result;
 		}else{
-			return null;
+			return null;			
 		}
+
 	}
 	
 }

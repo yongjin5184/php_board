@@ -23,8 +23,12 @@
             </ul>
             <ul class="tab_login">
             	<li>
-            		<span id="show_login" > | 로그인 | </span>
-<!--             	<li><span id="show_login" > | 바로가기 | </span></li> -->
+            		<span id="show_login" > | 로그인 | </span>&nbsp;
+            	    <span> 
+            	    	<?php if(@$this->session->userdata('logged_in') == TRUE){?>
+            			<?php echo $this->session->userdata('username')?>
+            			 님 환영합니다. <?php }?>
+            		 </span>
 <!--             	<li><span id="show_login" > | 쓰기 | </span></li> -->
 			 	</li>
 				<li id="div_login" class="none" >

@@ -7,6 +7,7 @@ Class Board extends CI_Controller {
     $this->load->database();
     $this->load->model('board_m');
     $this->load->helper(array('url','date'));
+    $this->load->library('session');
   }
 
   public function index(){
@@ -17,27 +18,6 @@ Class Board extends CI_Controller {
    * 사이트 헤더, 푸터를 자동으로 추가해준다.
    *
    */
-  
-//   public function _remap($method){
-  
-//   	$exe = array('modifyCate','newCate', 'getSelect','newBbs','getReply');
-//   	if(!in_array($method, $exe)){//특정 메소드는 안먹도록 작업.
-//   		//헤더
-//   		$this->load->view('header_v');
-  			
-//   		if(method_exists($this, $method)){
-//   			$this->{"{$method}"}();
-//   		}
-  			
-//   		//푸터
-//   		$this->load->view('footer_v');
-//   	}else{
-//   		if(method_exists($this, $method)){
-//   			$this->{"{$method}"}();
-//   		}
-//   	}
-  
-//   }
   public function _remap($method)
   {
   	$exe = array('auth');
@@ -242,18 +222,22 @@ Class Board extends CI_Controller {
 	}
 	
 	function auth(){
-		$select_user = array(
-				'users_id' => $this->input->post('id'),
-				'users_password'=>$this->input->post('password')
-		);
-		$data = $this->board_m->select_users($select_user);
-		if($data == null){
-// 			$data = array(
-// 				'alert' => '아이디를 확인해주세요'	
-// 			);
-			echo $data;
+		$users_id =  $this->input->post('id');
+		$users_password = $this->input->post('password');
+		$data = $this->board_m->select_users($users_id, $users_password);
+
+		if($data != null){
+			$username = $data['users_name'];
+			$email = $data['users_email'];
+			$sess_array = array(
+						'username' => $username,
+						'email' => $email,
+						'logged_in' =>TRUE
+						);
+ 			$this->session->set_userdata($sess_array);
+			echo json_encode($sess_array);
 		}else{
-			echo json_encode($data);
+			echo "null";
 		}
 	}
 }
