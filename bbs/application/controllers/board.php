@@ -17,18 +17,45 @@ Class Board extends CI_Controller {
    * 사이트 헤더, 푸터를 자동으로 추가해준다.
    *
    */
+  
+//   public function _remap($method){
+  
+//   	$exe = array('modifyCate','newCate', 'getSelect','newBbs','getReply');
+//   	if(!in_array($method, $exe)){//특정 메소드는 안먹도록 작업.
+//   		//헤더
+//   		$this->load->view('header_v');
+  			
+//   		if(method_exists($this, $method)){
+//   			$this->{"{$method}"}();
+//   		}
+  			
+//   		//푸터
+//   		$this->load->view('footer_v');
+//   	}else{
+//   		if(method_exists($this, $method)){
+//   			$this->{"{$method}"}();
+//   		}
+//   	}
+  
+//   }
   public function _remap($method)
   {
-    //헤더 include
-    $this->load->view('header_v');
-
-    if( method_exists($this, $method) )
-    {
-      $this->{"{$method}"}();
-    }
-
-    //푸터 include
-    $this->load->view('footer_v');
+  	$exe = array('auth');
+  	if(!in_array($method, $exe)){
+	    //헤더 include
+	    $this->load->view('header_v');
+	
+	    if( method_exists($this, $method) )
+	    {
+	      $this->{"{$method}"}();
+	    }
+	    //푸터 include
+	    $this->load->view('footer_v');
+  	}else{
+  		if(method_exists($this, $method)){
+  			$this->{"{$method}"}();
+  		}
+  	}
   }
 
   public function lists($search_word = ""){
@@ -65,12 +92,6 @@ Class Board extends CI_Controller {
     }else{
     	$my_page = 0; 
     }
-    if($_POST){
-    	echo ": " + $this->input->post('id', TRUE);
-    }else {
-    	echo ": " + $this->input->post('id', TRUE);
-    	echo ": " + $this->input->post('password', TRUE);
-    }
 //     echo "마이페이지: " . $my_page; // 0, 1, 2, 3
     
     $limit = $config['per_page'];
@@ -79,7 +100,6 @@ Class Board extends CI_Controller {
     $data['total_rows'] = $total_rows;
     $data['page'] = $my_page; //2.페이징 변수를 넘겨서 게시판 자동 넘버 처리
     $this->load->view('board/list_v', $data);
-    
   }
   
 /**
@@ -190,15 +210,15 @@ Class Board extends CI_Controller {
 				//글 수정 성공시 게시판 목록으로
 				echo
 				"<script>
-				alert('수정되었습니다.');
-				location.href = '/bbs/board/lists/ci_board/board_id/';
+					alert('수정되었습니다.');
+					location.href = '/bbs/board/lists/ci_board/board_id/';
 				</script>";
 				exit;
 			}else{
 				//글 수정 실패시 게시판 목록으로
 				echo
 				"<script>
-				alert('다시 입력해 주세요.');
+					alert('다시 입력해 주세요.');
 				</script>";
 				exit;
 			}
@@ -216,11 +236,26 @@ Class Board extends CI_Controller {
 			"<script>
 				alert('삭제되었습니다.');
 				location.href = '/bbs/board/lists/ci_board/board_id/';
-				</script>";
+			</script>";
 			exit;
 		}
 	}
 	
+	function auth(){
+		$select_user = array(
+				'users_id' => $this->input->post('id'),
+				'users_password'=>$this->input->post('password')
+		);
+		$data = $this->board_m->select_users($select_user);
+		if($data == null){
+// 			$data = array(
+// 				'alert' => '아이디를 확인해주세요'	
+// 			);
+			echo $data;
+		}else{
+			echo json_encode($data);
+		}
+	}
 }
 /* End of file welcome.php */
 /* Location: ./application/controllers/welcome.php */

@@ -40,8 +40,8 @@
 		<div>
 			<div id="div_sub_tab">
 				<ul>
-					<li><a href="/bbs/<?php echo $this->uri->segment(1);?>/lists/<?php echo $this->uri->segment(3);?>">게시판 프로젝트</a>
-					<a href="/bbs/board/write/<?php echo $this->uri->segment(3)?>">쓰기</a></li>
+					<li><a href="/php_board/bbs/<?php echo $this->uri->segment(1);?>/lists/<?php echo $this->uri->segment(3);?>">게시판 프로젝트</a>
+					<a href="/php_board/bbs/board/write/<?php echo $this->uri->segment(3)?>">쓰기</a></li>
 				</ul>
 			</div>
 		</div>

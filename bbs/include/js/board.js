@@ -31,19 +31,30 @@ $(document).ready(function() {
 		console.log("login");
 		console.log("id = " + $("#input_id").val());
 		console.log("password = " + $("#input_password").val());
-		var $login_obj = {
-			'id' : $("#input_id").val(),
-			'password' : $("#input_password").val()
-		};
-
+		var $id = $("#input_id").val();
+		var $password = $("#input_password").val();
+		$("#input_id").val('');
+		$("#input_password").val('')
 		$.ajax({
-			type : 'post',
-			data : JSON.stringify($login_obj),
-			dataType : 'text',
-			contentType : 'application/json',
-			url : './board',
+			type : 'POST',
+			data : {id:$id, password:$password},
+			dataType:'json',
+			url : '../../auth',
 			success : function(data) {
-				alert("성공입니다");
+				console.log("성공입니다");
+				if(data != null){
+					console.log(data.name + data.email);
+					$("#show_login").text("| 로그아웃 |");
+					$("#div_login").hide();
+					$("#show_login").after("<span style='font-size: 1.1em; color: #ff0000'>" + data.name + "님 반갑습니다." + "</span>"); 
+				}else{
+					console.log("조회되지않음.");
+					alert("아이디를 확인해 주세요");
+				}
+				
+			},
+			error : function(data){
+				console.log("실패!");
 			}
 		});
 	});
@@ -62,6 +73,7 @@ $(document).ready(function() {
 	});
 });
 
+//search
 function board_search_enter(form) {
 	var keycode = window.event.keyCode;
 	if (keycode == 13)
