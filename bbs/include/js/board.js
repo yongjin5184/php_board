@@ -86,16 +86,17 @@ $(document).ready(function() {
 		console.log("expand!!");
 		var $div_users_info = $(this).parent();
 		var $expand_content = $(this).parent().next();
-		if($expand_content.hasClass("none") == true){
+		if($expand_content.hasClass("none") == true){ //확장
 			$expand_content.removeClass("none");
 			$expand_content.addClass("block");
 			$div_users_info.css("border-bottom", "none");
-			$(this).text("close");
-		}else{
-			$expand_content.removeClass("block");
-			$expand_content.addClass("none");
 			$expand_content.css("border-bottom","1px solid black");
-			$(this).text("expand");
+			$(this).text("▲close");
+		}else{//접기
+			$expand_content.removeClass("block");
+			$div_users_info.css("border-bottom","1px solid black");
+			$expand_content.addClass("none");
+			$(this).text("▼expand");
 		}
 	});
 });

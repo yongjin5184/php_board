@@ -169,7 +169,11 @@ html ul.tab li.active a {
 	height: 20px;
 }
 /*list_v - users_info_table*/
-#div_users_info{
+#users_info_content{
+	
+}
+
+.users_info{
 	width: 25%;
 	height: 70px;
 	background-color:#F4F4F4;
@@ -177,6 +181,12 @@ html ul.tab li.active a {
 }
 
 .expand{
-	margin-left: 500px;
-	margin-bottom: 100px;
+	margin-left: 450px;
+	margin-bottom: 200px;
+	display : inline;
+}
+
+.btn-green{
+	background-color: #008B00;
+	color : #ffffff;
 }

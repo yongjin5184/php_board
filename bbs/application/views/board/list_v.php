@@ -56,10 +56,21 @@
   		</form>
   	</div>
   	<div id="tab2" class="tab_content">	
-  		<div id="div_users_info">
-			<a href="" >아이디</a>
-			<span class="expand">expand</span>
+  		<div id="users_info_content">	
+	  		<div class="users_info">
+				<a>아이디</a>
+				<span class="expand">▼expand</span>
+			</div>
+			<div class="none"><label>이름 : </label><input type="text" name="name" style="width: 200px; height: 35px;"></input>
+				<button class="btn-green" style ="height: 35px;">Save</button>
+			</div>
+			<div class="users_info">
+				<a>이메일</a>
+				<span class="expand">▼expand</span>
+			</div>
+			<div class="none"><label>이메일 : </label><input type="text" name="email" style="width: 200px; height: 35px;"></input>
+				<button class="btn-green" style ="height: 35px;">Save</button>
+			</div>
 		</div>
-		<div class="none"></div>
   	</div>
   </div>
