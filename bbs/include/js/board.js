@@ -39,9 +39,11 @@ $(document).ready(function() {
 			type : 'POST',
 			data : {id:$id, password:$password},
 			dataType:'json',
-			url : '../auth',
+			url : '../../auth',
 			success : function(data) {
 				if(data != null){
+					$('#div_login').hide();
+					window.location.href = "";
 					console.log("성공");
 				}else{
 					console.log("실패");
@@ -52,8 +54,13 @@ $(document).ready(function() {
 			}
 		});
 	});
+	
+	$(".logout_span").click(function() {
+		console.log("로그아웃");
+		window.location.href = "../../logout";
+	});
 
-	$("#show_login").click(function() {
+	$(".login_span").click(function() {
 		// console.log("show_login");
 		var $divLogin = $("#div_login");
 		if ($divLogin.hasClass("none") == true) {

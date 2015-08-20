@@ -23,11 +23,17 @@
             </ul>
             <ul class="tab_login">
             	<li>
-            		<span id="show_login" > | 로그인 | </span>&nbsp;
+            		<span id="show_login" class="login_span" > | 로그인 | </span>&nbsp;
             	    <span> 
             	    	<?php if(@$this->session->userdata('logged_in') == TRUE){?>
-            			<?php echo $this->session->userdata('username')?>
-            			 님 환영합니다. <?php }?>
+            				<?php echo $this->session->userdata('username')?>
+            			 	님 환영합니다. 
+            			 <?php echo "<script>
+							$('#show_login').text('| 로그아웃 |');
+							$('#show_login').removeClass('login_span');
+							$('#show_login').addClass('logout_span');
+							</script>" ?>
+            			 <?php }?>
             		 </span>
 <!--             	<li><span id="show_login" > | 쓰기 | </span></li> -->
 			 	</li>

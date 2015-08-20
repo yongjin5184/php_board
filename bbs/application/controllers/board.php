@@ -220,7 +220,9 @@ Class Board extends CI_Controller {
 			exit;
 		}
 	}
-	
+	/*
+	 *  로그인
+	 */
 	function auth(){
 		$users_id =  $this->input->post('id');
 		$users_password = $this->input->post('password');
@@ -239,6 +241,18 @@ Class Board extends CI_Controller {
 		}else{
 			echo "null";
 		}
+	}
+	/*
+	 * 로그아웃
+	 */
+	function logout(){
+		$this->session->sess_destroy();
+		echo
+		"<script>
+				alert ('로그아웃 되었습니다.', '/php_board/bbs/board/lists/board');
+				location.href = '/php_board/bbs/board/lists/board/';
+		</script>";
+		exit;
 	}
 }
 /* End of file welcome.php */
