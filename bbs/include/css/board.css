@@ -13,7 +13,9 @@
 }
 
 
-/* tab */
+/*
+* tab 
+*/
 ul.tab {
 	margin: 0;
 	padding: 0;
@@ -96,8 +98,10 @@ html ul.tab li.active a {
 	*/
 }
 
-/*list_v - table*/
-#view_table {
+/*
+*list_v - table
+*/
+#list_table {
 	width: 100%;
 	border: 1px solid black;
 	border-collapse: collapse;
@@ -105,31 +109,33 @@ html ul.tab li.active a {
 	padding: 15px;
 }
 
-#view_table th, td {
+#list_table th, td {
 	padding: 15px;
 }
 
-#view_table thead th {
+#list_table thead th {
 	background: #ABC668;
 }
 
-#view_table tbody tr:nth-child(even) {
+#list_table tbody tr:nth-child(even) {
 	background-color: #eee;
 }
 
-#view_table tbody tr:nth-child(odd) {
+#list_table tbody tr:nth-child(odd) {
 	background-color: #fff;
 }
 
-#view_table tbody tr:hover {
+#list_table tbody tr:hover {
 	background: #F3F5BB;
 }
 
-#view_table tbody tr:hover>:first-child {
+#list_table tbody tr:hover>:first-child {
 	background: #F2F684;
 	color: #1BA6B2;
 }
-/*header- div_sub_tab */
+/*
+*header- div_sub_tab 
+*/
 #div_sub_tab{
 }
 
@@ -148,7 +154,9 @@ html ul.tab li.active a {
 	background-color: #FFDC46;
 }
 
-/*header - div_login*/
+/*
+*header - div_login
+*/
 #div_login{
 	list-style:none;
 }
@@ -168,7 +176,9 @@ html ul.tab li.active a {
 #input_password, #input_id, #btn_login{
 	height: 20px;
 }
-/*list_v - users_info_table*/
+/*
+*list_v - users_info_table
+*/
 #users_info_content{
 	
 }
@@ -183,10 +193,21 @@ html ul.tab li.active a {
 .expand{
 	margin-left: 450px;
 	margin-bottom: 200px;
-	display : inline;
+	display : inline;s
 }
 
 .btn-green{
 	background-color: #008B00;
 	color : #ffffff;
+}
+
+/*
+* view_table
+*/
+#view_table{
+	width: 100%;
+}
+
+#comment_table{
+	width : 100%;
 }

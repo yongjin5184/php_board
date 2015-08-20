@@ -1,6 +1,6 @@
  <div id="tab_container">
   <div id="tab1" class="tab_content">
-    <table id= "view_table">
+    <table id= "list_table">
       <thead>
         <tr>
           <th scope="col">번호</th>

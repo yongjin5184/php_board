@@ -3,7 +3,7 @@
 		<header>
 			<h1></h1>
 		</header>
-		<table cellspacing="0" cellpadding="0" class="table table-striped">
+		<table id="view_table" class="table table-striped">
 			<thead>
 				<tr>
 					<th scope="col"><?=$result[0]->board_subject;?></th>
@@ -20,16 +20,17 @@
 				</tr>
 			</tbody>
 			
-			<table>
+			<table id="comment_table">
 				<thead>
 					<tr>
 						<td>
 						<hr/>
 						<!-- board id를 hidden 으로 넘김. -->
 							<form class="form-horizontal" method="post" action="" id="write_action">
-							<input type="text" class="form-control" name ="id" placeholder="아이디" >&nbsp&nbsp<input type="text" class="form-control" placeholder="내용" name="contents" style="width:400px">
-							<input type="hidden" name="board_id" value= "<?=$this->uri->segment(5);?>">
-							<button type="submit" class="btn btn-primary" id="re_write_btn">작성</button>
+								<input type="text" class="form-control" name ="id" placeholder="아이디" >&nbsp;&nbsp;
+								<input type="text" class="form-control" placeholder="내용" name="contents" style="width:400px">
+								<input type="hidden" name="board_id" value= "<?=$this->uri->segment(5);?>">
+								<button type="submit" class="btn btn-primary" id="re_write_btn">작성</button>
 							</form>
 						</td>
 					</tr> 
@@ -71,7 +72,6 @@
 					</tr>
 				</tfoot>
 			</table>
-			
 		</table>
 	</div>
 </article>
