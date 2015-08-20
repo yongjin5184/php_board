@@ -4,6 +4,14 @@
 .inline{
 	display : inline;
 }
+.block{
+	display : block;
+	width: 25%;
+	height: 90px;
+	background-color:#F4F4F4;
+	border-bottom: 1px solid #000000;
+}
+
 
 /* tab */
 ul.tab {
@@ -159,4 +167,16 @@ html ul.tab li.active a {
 
 #input_password, #input_id, #btn_login{
 	height: 20px;
+}
+/*list_v - users_info_table*/
+#div_users_info{
+	width: 25%;
+	height: 70px;
+	background-color:#F4F4F4;
+	border-bottom: 1px solid #000000;
+}
+
+.expand{
+	margin-left: 500px;
+	margin-bottom: 100px;
 }

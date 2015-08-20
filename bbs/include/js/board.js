@@ -3,6 +3,9 @@
  */
 
 $(document).ready(function() {
+	/*
+	 * tab click 
+	 */
 	$(".tab_content").hide();
 	$("ul.tab li:first").addClass("active").show();
 	$(".tab_content:first").show();
@@ -26,7 +29,9 @@ $(document).ready(function() {
 	$("#re_write_btn").click(function() {
 		console.log("re_write_btn");
 	});
-
+	/*
+	 * login button click
+	 */
 	$("#btn_login").click(function() {
 		console.log("login");
 		console.log("id = " + $("#input_id").val());
@@ -54,7 +59,9 @@ $(document).ready(function() {
 			}
 		});
 	});
-	
+	/*
+	 * logout span click
+	 */
 	$(".logout_span").click(function() {
 		console.log("로그아웃");
 		window.location.href = "../../logout";
@@ -72,11 +79,33 @@ $(document).ready(function() {
 			$divLogin.addClass("none");
 		}
 	});
+	/*
+	 * expand span click
+	 */
+	$(".expand").click(function(){
+		console.log("expand!!");
+		var $div_users_info = $(this).parent();
+		var $expand_content = $(this).parent().next();
+		if($expand_content.hasClass("none") == true){
+			$expand_content.removeClass("none");
+			$expand_content.addClass("block");
+			$div_users_info.css("border-bottom", "none");
+			$(this).text("close");
+		}else{
+			$expand_content.removeClass("block");
+			$expand_content.addClass("none");
+			$expand_content.css("border-bottom","1px solid black");
+			$(this).text("expand");
+		}
+	});
 });
 
-//search
+/*
+ * search button click
+ */
 function board_search_enter(form) {
 	var keycode = window.event.keyCode;
 	if (keycode == 13)
 		$("#search_btn").click();
 }
+

@@ -1,8 +1,5 @@
  <div id="tab_container">
   <div id="tab1" class="tab_content">
-    <header>
-      <h1></h1>
-    </header>
     <table id= "view_table">
       <thead>
         <tr>
@@ -33,10 +30,10 @@
               	?>
               </th>
               <td>
-              <form id="myForm" action="/php_board/bbs/<?=$board_name;?>/view/<?=$table_name?>/board_id/<?=$lt->id;?>" method="post" name="myForm">
-              <input type="hidden" name="rownum" value="<?=$index_rownum?>"/>
-              <a rel="external" id="a_tag_sub1" href="javascript: document.getElementById('myForm').submit();"><?=$lt->subject;?></a>
-              </form>
+	              <form id="myForm" action="/php_board/bbs/<?=$board_name;?>/view/<?=$table_name?>/board_id/<?=$lt->id;?>" method="post" name="myForm">
+		              <input type="hidden" name="rownum" value="<?=$index_rownum?>"/>
+		              <a rel="external" id="a_tag_sub1" href="javascript: document.getElementById('myForm').submit();"><?=$lt->subject;?></a>
+	              </form>
               </td>
               <td><?=$lt->user_name;?></td>
               <td><?=$lt->hits;?></td>
@@ -57,6 +54,12 @@
         <input type="text" name="search_word" id="q" onkeypress="board_search_enter(document.q);" class="input-medium search-query" /> 
         <input type="submit" value="검색" id="search_btn" class="btn btn-primary" />
   		</form>
-  		</div>
-  		
+  	</div>
+  	<div id="tab2" class="tab_content">	
+  		<div id="div_users_info">
+			<a href="" >아이디</a>
+			<span class="expand">expand</span>
+		</div>
+		<div class="none"></div>
+  	</div>
   </div>
