@@ -9,7 +9,7 @@ class Board_m extends CI_Model {
 		if ( $search_word != '' )
      	{
      		//검색어가 있을 경우의 처리
-     		$sword = ' WHERE board_subject like "%'.$search_word.'%" or contents like "%'.$search_word.'%" ';
+     		$sword = ' WHERE board_subject like "%'.$search_word.'%" or board_contents like "%'.$search_word.'%" ';
      	}
 
     	$limit_query = '';
@@ -21,7 +21,7 @@ class Board_m extends CI_Model {
      	}
 		//select (@rownum:=@rownum+1) rownum ,user_name, subject, contents,hits, reg_date from ci_board ,(select @rownum:=0) TMP;
 // 		echo "옵셋 : " . $offset;
-    	$sql = "select board_id as id, (@rownum:=@rownum+1) as rownum ,board_user_name as user_name, board_subject as subject, board_contents as contents, board_hits as hits, board_reg_date as reg_date FROM ".$table.",(select @rownum:='".$offset."') TMP ".$sword." ORDER BY id desc, rownum desc ".$limit_query;
+    	$sql = "select board_id as id, (@rownum:=@rownum+1) as rownum, users_id, board_subject as subject, board_contents as contents, board_hits as hits, board_reg_date as reg_date FROM ".$table.",(select @rownum:='".$offset."') TMP ".$sword." ORDER BY id desc, rownum desc ".$limit_query;
    		$query = $this->db->query($sql);
    		
 		if ( $type == 'count' )
@@ -45,9 +45,12 @@ class Board_m extends CI_Model {
 	function get_view($table, $id, $table_comment='') { 
 		$sql_array = array();
 		// 조회수 증가
-		$sql0 = "UPDATE " . $table . " SET board_hits=board_hits+1 WHERE board_id='" . $id . "'";
-		$this->db->query ( $sql0 );
-// 		$sql = "SELECT (@rownum:=@rownum+1) rownum, user_name, subject, contents,hits, reg_date FROM " . $table . ",(select @rownum:=0) TMP WHERE board_id='" . $id . "'";
+// 		$sql0 = "UPDATE " . $table . " SET board_hits = board_hits+1 WHERE board_id='" . $id . "'";
+		$this->db->set('board_hits', 'board_hits + 1');
+		$this->db->where('board_id', $id);
+		$this->db->update($table);
+		$this->db->get( );
+// 		join table;
 		$this->db->select('*');
 		$this->db->from('board as b');
 		$this->db->where('b.board_id', $id);
@@ -57,12 +60,7 @@ class Board_m extends CI_Model {
 		// 게시물 내용 반환
 		$sql_array[0] = $result;
 		if($table_comment != ''){ // $table_comment 변수가 있을 때만 실행
-// 			$sql1 = "SELECT * FROM " . $table_comment . " WHERE board_id=" . $id ." order by board_id desc";
-// 			$this->db->select('bc_id , bc_user_id, bc_contents, bc_reg_date, b.board_id');
-// 			$this->db->from('board b');
-// 			$this->db->where('b.board_id' , $id);
-// 			$this->db->join('board_comment', 'b.board_id = board_comment.board_id');
-// 			$this->db->order_by('b.board_id', 'desc');
+// 			$sql2 = "SELECT * FROM " .$table_comment. " WHERE board_id=". $id ." order by board_id desc";
 			$this->db->select('*');
 			$this->db->from($table_comment);
 			$this->db->where('board_id', $id);
@@ -123,11 +121,6 @@ class Board_m extends CI_Model {
 		
 		return $result;
 	}
-// 	$this->memdb_slave->select('no, ban_id, ban_name, joinday, StrJoinSite, delday, state, ban_del, ban_delday, ban_del_reason');
-// 	$this->memdb_slave->where('ban_id', $id);
-// 	$this->memdb_slave->where('ban_del', 'N');
-// 	$qry = $this->memdb_slave->get('ban_member');
-// 	return $qry->result_array();
 	function select_users($users_id = null , $users_password = null){
 		// 여기서 데이터베이스 처리하고 다시 뷰로 넘겨줘야함.
 		$this->db->select('*');

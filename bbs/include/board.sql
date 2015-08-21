@@ -53,13 +53,13 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 
 CREATE TABLE IF NOT EXISTS `users_picture`(
 	user_pic_id INT AUTO_INCREMENT NOT NULL,
-    users_id VARCHAR(50) NOT NULL,
+    board_id INT NOT NULL,
     user_pic_subject VARCHAR(20) NOT NULL,
     user_pic_path VARCHAR(100) NOT NULL,
 	user_pic_date DATETIME NOT NULL,
     user_pic_is_del ENUM('Y','N') NOT NULL DEFAULT 'N',
     PRIMARY KEY(user_pic_id),
-    FOREIGN KEY(users_id) REFERENCES users(users_id)
+    FOREIGN KEY(board_id) REFERENCES board(board_id)
 )engine=InnoDB CHARSET=utf8;
 
 INSERT INTO board (board_user_name, users_id, board_subject, board_contents, board_hits, board_reg_date, board_is_del, board_password) values ('김용진', 'asdf','안녕하세요', '자기소개입니다.', 0, '2012-12-22', 'N', '');

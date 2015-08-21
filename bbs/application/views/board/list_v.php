@@ -35,7 +35,7 @@
 		              <a id="a_tag_sub1" href="javascript: document.getElementById('myForm').submit();"><?=$lt->subject;?></a>
 	              </form>
               </td>
-              <td><?=$lt->user_name;?></td>
+              <td><?=$lt->users_id;?></td>
               <td><?=$lt->hits;?></td>
               <td><time datetime="<?=mdate("%Y-%M-%j", human_to_unix($lt->reg_date));?>"><?=mdate("%M. %j, %Y", human_to_unix($lt->reg_date));?></time></td>
           </tr>
@@ -50,7 +50,7 @@
     </table>
       <!--form id="bd_search" method="post" class="well form-search" -->
         <i class="icon-search"></i> 
-        <form action="/bbs/<?=$this->uri->segment(1);?>/search/<?=$this->uri->segment(3);?>" method="post">
+        <form action="/php_board/bbs/<?=$this->uri->segment(1);?>/search/<?=$this->uri->segment(3);?>" method="post">
         <input type="text" name="search_word" id="q" onkeypress="board_search_enter(document.q);" class="input-medium search-query" /> 
         <input type="submit" value="검색" id="search_btn" class="btn btn-primary" />
   		</form>
