@@ -155,15 +155,15 @@ Class Board extends CI_Controller {
 				//글 작성 성공시 게시판 목록으로
 				echo
 				"<script>
-				alert('입력되었습니다.'); 
-				location.href = '/bbs/board/lists/ci_board/board_id/'; 
+					alert('입력되었습니다.'); 
+					location.href = '/bbs/board/lists/ci_board/board_id/'; 
 				</script>";
 				exit;
 			}else{
 				//글 실패시 게시판 목록으로
 				echo
 				"<script>
-				alert('다시 입력해 주세요.');
+					alert('다시 입력해 주세요.');
 				</script>";
 				exit;
 			}
@@ -231,11 +231,15 @@ Class Board extends CI_Controller {
 		if($data != null){
 			$username = $data['users_name'];
 			$email = $data['users_email'];
+			$level = $data['users_level'];
+			$id = $data['users_id'];
 			$sess_array = array(
-						'username' => $username,
-						'email' => $email,
-						'logged_in' =>TRUE
-						);
+				'username' => $username,
+				'email' => $email,
+				'level' =>$level,
+				'id' => $id,
+				'logged_in' =>TRUE
+			);
  			$this->session->set_userdata($sess_array);
 			echo json_encode($sess_array);
 		}else{

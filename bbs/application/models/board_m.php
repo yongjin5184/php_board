@@ -39,20 +39,35 @@ class Board_m extends CI_Model {
 
     	return $result;
 	}
-	function get_view($table, $id, $table_comment='') {
+	/*
+	 * $table : 게시판 , $table_comment : 게시판 댓글 
+	 */
+	function get_view($table, $id, $table_comment='') { 
 		$sql_array = array();
 		// 조회수 증가
 		$sql0 = "UPDATE " . $table . " SET board_hits=board_hits+1 WHERE board_id='" . $id . "'";
 		$this->db->query ( $sql0 );
 // 		$sql = "SELECT (@rownum:=@rownum+1) rownum, user_name, subject, contents,hits, reg_date FROM " . $table . ",(select @rownum:=0) TMP WHERE board_id='" . $id . "'";
-		$sql = "SELECT * FROM " . $table . " WHERE board_id='" . $id . "'";
-		$query = $this->db->query ( $sql );
-		// 게시물 내용 반환
+		$this->db->select('*');
+		$this->db->from('board as b');
+		$this->db->where('b.board_id', $id);
+		$this->db->join('users', 'b.users_id = users.users_id');
+		$query = $this->db->get();
 		$result = $query->row();
+		// 게시물 내용 반환
 		$sql_array[0] = $result;
 		if($table_comment != ''){ // $table_comment 변수가 있을 때만 실행
-			$sql1 = "SELECT * FROM " . $table_comment . " WHERE board_id=" . $id ." order by board_id desc";
-			$query1 = $this->db->query ( $sql1 );
+// 			$sql1 = "SELECT * FROM " . $table_comment . " WHERE board_id=" . $id ." order by board_id desc";
+// 			$this->db->select('bc_id , bc_user_id, bc_contents, bc_reg_date, b.board_id');
+// 			$this->db->from('board b');
+// 			$this->db->where('b.board_id' , $id);
+// 			$this->db->join('board_comment', 'b.board_id = board_comment.board_id');
+// 			$this->db->order_by('b.board_id', 'desc');
+			$this->db->select('*');
+			$this->db->from($table_comment);
+			$this->db->where('board_id', $id);
+			$this->db->order_by('board_id', 'desc');
+			$query1 = $this->db->get();
 			$result1 = $query1->result();
 			$sql_array[1] = $result1;
 		}

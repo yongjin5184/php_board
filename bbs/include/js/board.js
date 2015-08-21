@@ -30,7 +30,7 @@ $(document).ready(function() {
 		console.log("re_write_btn");
 	});
 	/*
-	 * login button click
+	 * login button click ajax
 	 */
 	$("#btn_login").click(function() {
 		console.log("login");

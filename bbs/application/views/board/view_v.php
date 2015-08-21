@@ -6,10 +6,11 @@
 		<table id="view_table" class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col"><?=$result[0]->board_subject;?></th>
-					<th scope="col">이름 : <?=$result[0]->board_user_name;?></th>
-					<th scope="col">조회수 : <?=$result[0]->board_hits;?></th>
-					<th scope="col">등록일 : <?=$result[0]->board_reg_date;?></th>
+					<th><?=$result[0]->board_subject;?></th>
+					<th>이름 : <?=$result[0]->board_user_name;?></th>
+					<th>조회수 : <?=$result[0]->board_hits;?></th>
+					<th>등록일 : <?=$result[0]->board_reg_date;?></th>
+					<th>작성자 : <?=$result[0]->users_id?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -60,11 +61,20 @@
 					 -->
 						<th><a
 							href="/php_board/bbs/board/lists/<?=$this->uri->segment(3)?><?php if($my_page != 0){ echo "/page/".$my_page; };  ?>"
-							class="btn btn-primary">목록</a> <a
-							href="/php_board/bbs/board/modify/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
-							class="btn btn-warning">수정</a> <a
-							href="/php_board/bbs/board/delete/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
-							class="btn btn-danger">삭제</a> 
+							class="btn btn-primary">목록</a> 
+							 
+							<?php 
+								$session_id = $this->session->userdata['id'];
+								$user_id = $result[0]->users_id;
+								if($session_id == $user_id){
+							?>
+								<a
+								href="/php_board/bbs/board/modify/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
+								class="btn btn-warning">수정</a>
+								<a
+								href="/php_board/bbs/board/delete/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
+								class="btn btn-danger">삭제</a> 
+							<?php }?>
 							<!-- <a
 							href="/bbs/board/write/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
 							class="btn btn-success">쓰기</a>-->
