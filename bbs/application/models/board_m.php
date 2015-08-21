@@ -46,17 +46,21 @@ class Board_m extends CI_Model {
 		$sql_array = array();
 		// 조회수 증가
 // 		$sql0 = "UPDATE " . $table . " SET board_hits = board_hits+1 WHERE board_id='" . $id . "'";
-		$this->db->set('board_hits', 'board_hits + 1');
+		$data = array(
+			'board_hits' => 'board_hits + 1'				
+		);
 		$this->db->where('board_id', $id);
-		$this->db->update($table);
-		$this->db->get( );
+		$this->db->set('board_hits', 'board_hits+1', FALSE);
+		$this->db->update('board');
 // 		join table;
 		$this->db->select('*');
 		$this->db->from('board as b');
+		$this->db->join('users as u', 'b.users_id = u.users_id');
 		$this->db->where('b.board_id', $id);
-		$this->db->join('users', 'b.users_id = users.users_id');
 		$query = $this->db->get();
 		$result = $query->row();
+// 		echo $this->db->last_query();
+// 		exit;
 		// 게시물 내용 반환
 		$sql_array[0] = $result;
 		if($table_comment != ''){ // $table_comment 변수가 있을 때만 실행

@@ -64,6 +64,8 @@
 							class="btn btn-primary">목록</a> 
 							 
 							<?php 
+// 								echo var_dump($this->session->userdata);
+// 								exit;
 								$session_id = $this->session->userdata['id'];
 								$user_id = $result[0]->users_id;
 								if($session_id == $user_id){

@@ -15,12 +15,14 @@
 }
 
 .center {
-	margin: auto;
-	width: 60%;
-	border: 3px solid #000;
 	padding : 10px;
+	display : center;
+	margin: 0 auto;
 }
 
+.field_style {
+	width: 50%;
+}
 /*
 * tab 
 */
@@ -179,6 +181,10 @@ html ul.tab li.active a {
 .tab_login>:first-child{
 	list-style:none;
 	display:inline;
+}
+#input_pw, #input_id{
+	height: 35px;
+	width : 200px;
 }
 
 #input_password, #input_id, #btn_login{

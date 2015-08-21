@@ -13,7 +13,7 @@
       <tbody>
         
         <?php 
-//         		var_dump($list);
+//         var_dump($list);
         $i = 0;
 //      $my_rownum = $list[0]->rownum; // 14
         foreach ($list as $lt)
@@ -61,14 +61,14 @@
 				<a>아이디</a>
 				<span class="expand">▼expand</span>
 			</div>
-			<div class="none"><label>이름 : </label><input type="text" name="name" style="width: 200px; height: 35px;"></input>
+			<div class="none"><label>이름 : </label><input id="input_id" type="text" name="name" ></input>
 				<button class="btn-green" style ="height: 35px;">Save</button>
 			</div>
 			<div class="users_info">
 				<a>이메일</a>
 				<span class="expand">▼expand</span>
 			</div>
-			<div class="none"><label>이메일 : </label><input type="text" name="email" style="width: 200px; height: 35px;"></input>
+			<div class="none"><label>이메일 : </label><input id="input_pw"type="text" name="email"></input>
 				<button class="btn-green" style ="height: 35px;">Save</button>
 			</div>
 		</div>
