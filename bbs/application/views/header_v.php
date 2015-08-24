@@ -34,7 +34,7 @@
 							$('#show_login').addClass('logout_span');
 							</script>" ?>
 							<?php $userlevel = $this->session->userdata('level');
-								if($userlevel == 'N'){
+								if($userlevel == 'A'){
 								echo "<script>$('#container .tab li:eq(1)').after('<li><a href=\'#tab3\'>관리자</a></li>');</script>"?>
 								<?php }?>
             			 <?php }?>

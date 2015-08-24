@@ -8,7 +8,7 @@
 
 .block{
 	display: block;
-	width: 25%;
+	width: 30%;
 	height: 90px;
 	background-color:#F4F4F4;
 	border-bottom: 1px solid #000000;
@@ -198,16 +198,15 @@ html ul.tab li.active a {
 }
 
 .users_info{
-	width: 25%;
+	width: 30%;
 	height: 70px;
 	background-color:#F4F4F4;
 	border-bottom: 1px solid #000000;
 }
 
 .expand{
-	margin-left: 450px;
-	margin-bottom: 200px;
-	display : inline;s
+	float:right;
+	display : inline;
 }
 
 .btn-green{
