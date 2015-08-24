@@ -79,12 +79,10 @@ class Board_m extends CI_Model {
 	
 	function insert_board($arrays){
 		$insert_array = array(
-				'board_pid' => 0,
-				'user_id' => 'advisor',
-				'user_name' => '김용진',
-				'subject' => $arrays['subject'],
-				'contents' => $arrays['contents'],
-				'reg_date' => date("Y-m-d H:i:s")
+				'users_id' => $arrays['id'],
+				'board_subject' => $arrays['subject'],
+				'board_contents' => $arrays['contents'],
+				'board_reg_date' => date("Y-m-d H:i:s")
 		);
 		$result = $this->db->insert($arrays['table'], $insert_array);
 		return $result;

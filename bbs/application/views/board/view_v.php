@@ -7,7 +7,7 @@
 			<thead>
 				<tr>
 					<th><?=$result[0]->board_subject;?></th>
-					<th>이름 : <?=$result[0]->board_user_name;?></th>
+					<th>이름 : <?=$result[0]->board_contents;?></th>
 					<th>조회수 : <?=$result[0]->board_hits;?></th>
 					<th>등록일 : <?=$result[0]->board_reg_date;?></th>
 					<th>작성자 : <?=$result[0]->users_id?></th>

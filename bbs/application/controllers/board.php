@@ -128,14 +128,14 @@ Class Board extends CI_Controller {
   			echo
   			"<script>
 				alert('입력되었습니다.');
-				location.href = '/bbs/board/view/ci_board/board_id/" .$this->uri->segment(5)."';</script>"; 
+				location.href = '/php_board/bbs/board/view/board/board_id/" .$this->uri->segment(5)."';</script>"; 
   			exit;
   		}else{
   			//글 실패시 게시판 목록으로
   			echo
   			"<script>
 				alert('다시 입력해 주세요.');
-  				location.href = '/bbs/board/view/ci_board/board_id/" .$this->uri->segment(5)."';</script>"; 
+  				location.href = '/php_board/bbs/board/view/board/board_id/" .$this->uri->segment(5)."';</script>"; 
   			exit;
   		}
   	}
@@ -148,6 +148,8 @@ Class Board extends CI_Controller {
 		if($_POST){
 			// 글쓰기 POST 전송시
 			$write_data = array(
+					'id' => $this->input->post('id', TRUE),
+					'username' => $this->input->post('username', TRUE),
 					'subject' => $this->input->post('subject', TRUE),
 					'contents' => $this->input->post('contents' , TRUE),
 					'table' => $this->uri->segment(3)
@@ -158,7 +160,7 @@ Class Board extends CI_Controller {
 				echo
 				"<script>
 					alert('입력되었습니다.'); 
-					location.href = '/bbs/board/lists/ci_board/board_id/'; 
+					location.href = '/php_board/bbs/board/lists/board/board_id/'; 
 				</script>";
 				exit;
 			}else{
@@ -193,7 +195,7 @@ Class Board extends CI_Controller {
 				echo
 				"<script>
 					alert('수정되었습니다.');
-					location.href = '/bbs/board/lists/ci_board/board_id/';
+					location.href = '/php_board/bbs/board/lists/board/board_id/';
 				</script>";
 				exit;
 			}else{
@@ -217,7 +219,7 @@ Class Board extends CI_Controller {
 			echo
 			"<script>
 				alert('삭제되었습니다.');
-				location.href = '/bbs/board/lists/ci_board/board_id/';
+				location.href = '/php_board/bbs/board/lists/board/board_id/';
 			</script>";
 			exit;
 		}
