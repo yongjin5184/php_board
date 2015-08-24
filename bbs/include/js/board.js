@@ -7,8 +7,8 @@ $(document).ready(function() {
 	 * tab click 
 	 */
 	$(".tab_content").hide();
-	$("ul.tab li:first").addClass("active").show();
-	$(".tab_content:first").show();
+//	$("ul.tab li:first").addClass("active").show();
+	$("#tab1").show();
 	$("ul.tab li").click(function() {
 		$("ul.tab li").removeClass("active");
 		$(this).addClass("active");
@@ -44,7 +44,7 @@ $(document).ready(function() {
 			type : 'POST',
 			data : {id:$id, password:$password},
 			dataType:'json',
-			url : '../../auth',
+			url : 'http://localhost:8080/php_board/bbs/board/auth',
 			success : function(data) {
 				if(data != null){
 					$('#div_login').hide();
@@ -64,7 +64,7 @@ $(document).ready(function() {
 	 */
 	$(".logout_span").click(function() {
 		console.log("로그아웃");
-		window.location.href = "../../logout";
+		window.location.href = "http://localhost:8080/php_board/bbs/board/logout/";
 	});
 
 	$(".login_span").click(function() {

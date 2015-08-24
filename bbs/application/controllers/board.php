@@ -8,6 +8,8 @@ Class Board extends CI_Controller {
     $this->load->model('board_m');
     $this->load->helper(array('url','date'));
     $this->load->library('session');
+    $this->load->helper('form');
+    $this->load->helper('url');
   }
 
   public function index(){

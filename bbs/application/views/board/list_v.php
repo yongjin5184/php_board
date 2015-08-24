@@ -55,22 +55,4 @@
         <input type="submit" value="검색" id="search_btn" class="btn btn-primary" />
   		</form>
   	</div>
-  	<div id="tab2" class="tab_content">	
-  		<div id="users_info_content">	
-	  		<div class="users_info">
-				<a>이름 : </a><span><?php echo $this->session->userdata('username')?></span>
-				<span class="expand">▼expand</span>
-			</div>
-			<div class="none"><label>이름 : </label><input id="input_id" type="text" name="name" ></input>
-				<button class="btn-green" style ="height: 35px;">Save</button>
-			</div>
-			<div class="users_info">
-				<a>이메일 : </a><span><?php echo $this->session->userdata('email')?></span>
-				<span class="expand">▼expand</span>
-			</div>
-			<div class="none"><label>이메일 : </label><input id="input_pw"type="text" name="email"></input>
-				<button class="btn-green" style ="height: 35px;">Save</button>
-			</div>
-		</div>
-  	</div>
   </div>
