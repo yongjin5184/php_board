@@ -2,17 +2,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="viewport" content="width=device-width,initial-scale=1, user-scalable=no" />
 	<title>CodeIgniter</title>
-	<!--[if lt IE 9]>
-	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<!-- <link rel='stylesheet' href="/bbs/include/css/bootstrap.css" /> -->
 	<link rel='stylesheet' href="/php_board/bbs/include/css/board.css" />
 	<script src="/php_board/bbs/include/js/board.js"></script>
-	
 </head>
 <body>
 	<div id="header">
@@ -63,8 +57,9 @@
   		<div id="users_info_content">
 	  		<div class="users_info">
 				<span>사진 : </span>
-				<?php echo form_open_multipart('upload/do_upload');?>
+				<form action="http://localhost:8080/php_board/bbs/upload/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 				<input type="file" name="userfile" size="20" />
+				<input type="hidden" name="userid" value="<?php echo $this->session->userdata('id')?>"/>
 				<input type="submit" value="upload" />
 				</form> 	
 			</div>

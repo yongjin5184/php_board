@@ -66,14 +66,15 @@ class Board_m extends CI_Model {
 // 			$sql2 = "SELECT * FROM " .$table_comment. " WHERE board_id=". $id ." order by board_id desc";
 			$this->db->select('*');
 			$this->db->from($table_comment);
-			$this->db->where('board_id', $id);
-			$this->db->order_by('board_id', 'desc');
+			$this->db->join('users as u', 'board_comment.bc_users_id = u.users_id');
+			$this->db->where('board_comment.board_id', $id);
+			$this->db->order_by('board_comment.board_id', 'desc');
 			$query1 = $this->db->get();
 			$result1 = $query1->result();
 			$sql_array[1] = $result1;
-			echo $this->db->last_query();
+// 			echo $this->db->last_query();
 // 			var_dump($result1);
-			exit;
+// 			exit;
 		}
  		
  		return $sql_array;
@@ -140,7 +141,17 @@ class Board_m extends CI_Model {
 		}else{
 			return null;			
 		}
-
 	}
-	
+	function insert_users_profile_path($arrays){
+		$data = array(
+				'users_profile_path' => "/php_board/bbs/uploads/".$arrays['file_name']
+		);
+		
+		$where = array(
+				'users_id' => $arrays['users_id']
+		);
+		
+		$result = $this->db->update('users', $data, $where);
+		return $result;
+	}
 }

@@ -45,14 +45,16 @@
 					<tr>
 						<td>
 						<hr style="border-top: dotted 2px black;"/>
-						<img src="/php_board/bbs/include/images/smiley.gif" alt="Smiley face" width="42" height="42" alt="smile">
-						<span><?=$rs->bc_user_id;?></span> &nbsp <span><?=$rs->bc_reg_date;?></span> 
+						<!-- -->
+						<?php if($rs->users_profile_path != ''){?>
+						<img src="<?=$rs->users_profile_path;?>" alt="Smiley face" width="42" height="42" alt="smile">
+						<span><?=$rs->bc_users_id;?></span> &nbsp <span><?=$rs->bc_reg_date;?></span> 
 						<br/>
 						<span><?=$rs->bc_contents;?></span>
 						<hr style="border-top: dotted 2px black;"/>
 						</td>
 					</tr>
-					<?php }}?>
+					<?php }}}?>
 				</tbody>
 				<tfoot align="left">
 					<tr>
