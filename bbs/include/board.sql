@@ -61,9 +61,12 @@ CREATE TABLE IF NOT EXISTS `board_picture`(
 )engine=InnoDB CHARSET=utf8;
 
 INSERT INTO board (users_id, board_subject, board_contents, board_hits, board_reg_date, board_is_del, board_password) values ('asdf','안녕하세요', '자기소개입니다.', 0, '2012-12-22', 'N', '');
-select * from board;
-INSERT INTO board_comment (board_id, bc_user_id, bc_contents, bc_reg_date) value (2, 'kim' ,'첫 번째 댓글입니다.', '2014-05-10');
+select * from board where board_is_del in ('N
+');
+INSERT INTO board_comment (board_id, bc_user_id, bc_contents, bc_reg_date) value (1, 'kim' ,'첫 번째 댓글입니다.', '2014-05-10');
 SELECT * FROM board_comment;
+SELECT * FROM board where board_is_del NOT IN('N') and (board_subject LIKE"%안%" or board_contents like "%안%");
+select * from board;
 select * from sessions;
 select * from users;
 select * from board_picture;
@@ -71,3 +74,4 @@ insert into users (users_id, users_password, users_name, users_emaiL, users_reg_
 insert into users (users_id, users_password, users_name, users_emaiL, users_level, users_reg_date) values ('qwer', 'qwer', '아이유', 'iu@naver.com', 'Y',now());
 insert into board_picture (board_id, board_pic_subject, board_pic_path, board_pic_date)values(2,'김용진','/php_board/bbs/include/images/smiley.gif',now());
 SELECT * FROM board_comment as bc join board as b on bc.board_id = b.board_id WHERE bc.board_id=1 order by bc.board_id desc;
+SELECT * FROM board_comment WHERE board_id=1 order by board_id desc;

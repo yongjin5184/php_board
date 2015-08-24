@@ -49,7 +49,7 @@ Class Board extends CI_Controller {
   	//페이지네이션 라이브러리 로딩 추가
   	$this->load->library('pagination');
   	//페이지네이션 설정
-  	$config['base_url'] = '/bbs/board/lists/board/page'; //페이징 주소
+  	$config['base_url'] = '/php_board/bbs/board/lists/board/page'; //페이징 주소
   	$config['total_rows'] = $this->board_m->get_list($table_name, 'count'); //전체 로우 수
   	$total_rows = $config['total_rows']; // 전체 로우 수 변수
   	$config['per_page'] = 5; //한 페이지에 표시할 게시물 수 

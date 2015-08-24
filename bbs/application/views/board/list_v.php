@@ -13,11 +13,12 @@
       <tbody>
         
         <?php 
-//         var_dump($list);
+         
+        $j = 0;
         $i = 0;
 //      $my_rownum = $list[0]->rownum; // 14
         foreach ($list as $lt)
-		{	
+		{
         ?>
           <tr>
               <th scope="row">
@@ -30,17 +31,19 @@
               	?>
               </th>
               <td>
-	              <form id="myForm" action="/php_board/bbs/<?=$board_name;?>/view/<?=$table_name?>/board_id/<?=$lt->id;?>" method="post" name="myForm">
-		              <input type="hidden" name="rownum" value="<?=$index_rownum?>"/>
-		              <a id="a_tag_sub1" href="javascript: document.getElementById('myForm').submit();"><?=$lt->subject;?></a>
-	              </form>
+				<form id="myForm" action="/php_board/bbs/<?=$board_name;?>/view/<?=$table_name?>/board_id/<?=$lt->id?>" method="post" name="myForm">
+	    	          <input type="hidden" name="rownum" value="<?=$index_rownum?>"/>
+	        	      <a id="a_tag_sub1" href="javascript: document.getElementsByName('myForm')[<?php echo $j?>].submit();"><?=$lt->subject;?></a>
+	            </form>
               </td>
               <td><?=$lt->users_id;?></td>
               <td><?=$lt->hits;?></td>
               <td><time datetime="<?=mdate("%Y-%M-%j", human_to_unix($lt->reg_date));?>"><?=mdate("%M. %j, %Y", human_to_unix($lt->reg_date));?></time></td>
           </tr>
 
-          <?php }?>
+          <?php
+         $j++;}
+          ?>
       </tbody>
       <tfoot>
       	<tr>

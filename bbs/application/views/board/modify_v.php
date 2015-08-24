@@ -20,7 +20,6 @@
 							cols="150" rows="30"><?php echo $views[0]->board_contents;?></textarea>
 						<p class="help-block"></p>
 					</div>
-
 					<div class="form-actions">
 						<button type="submit" id="write_btn">수정</button>
 						<button class="btn" onclick="document.location.reload()">취소</button>

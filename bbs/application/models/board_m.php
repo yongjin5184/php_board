@@ -5,11 +5,11 @@ class Board_m extends CI_Model {
 	}
 	function get_list($table='board', $type='', $offset='', $limit='', $search_word='') {
 // 		$sword= ' WHERE 1=1 '; //항상 참인 조건
- 		$sword= '';
+ 		$sword= " where board_is_del IN ('N')";
 		if ( $search_word != '' )
      	{
      		//검색어가 있을 경우의 처리
-     		$sword = ' WHERE board_subject like "%'.$search_word.'%" or board_contents like "%'.$search_word.'%" ';
+     		$sword = $sword. ' and (board_subject like "%'.$search_word.'%" or board_contents like "%'.$search_word.'%")';
      	}
 
     	$limit_query = '';
@@ -21,7 +21,7 @@ class Board_m extends CI_Model {
      	}
 		//select (@rownum:=@rownum+1) rownum ,user_name, subject, contents,hits, reg_date from ci_board ,(select @rownum:=0) TMP;
 // 		echo "옵셋 : " . $offset;
-    	$sql = "select board_id as id, (@rownum:=@rownum+1) as rownum, users_id, board_subject as subject, board_contents as contents, board_hits as hits, board_reg_date as reg_date FROM ".$table.",(select @rownum:='".$offset."') TMP ".$sword." ORDER BY id desc, rownum desc ".$limit_query;
+    	$sql = "select board_id as id, (@rownum:=@rownum+1) as rownum, users_id, board_subject as subject, board_contents as contents, board_hits as hits, board_is_del, board_reg_date as reg_date FROM ".$table.",(select @rownum:='".$offset."') TMP ".$sword." ORDER BY id desc, rownum desc ".$limit_query;
    		$query = $this->db->query($sql);
    		
 		if ( $type == 'count' )
@@ -59,7 +59,6 @@ class Board_m extends CI_Model {
 		$this->db->where('b.board_id', $id);
 		$query = $this->db->get();
 		$result = $query->row();
-// 		echo $this->db->last_query();
 // 		exit;
 		// 게시물 내용 반환
 		$sql_array[0] = $result;
@@ -72,9 +71,12 @@ class Board_m extends CI_Model {
 			$query1 = $this->db->get();
 			$result1 = $query1->result();
 			$sql_array[1] = $result1;
+			echo $this->db->last_query();
+// 			var_dump($result1);
+			exit;
 		}
-// 		var_dump($result1);
-		return $sql_array;
+ 		
+ 		return $sql_array;
 	}
 	
 	function insert_board($arrays){
@@ -116,10 +118,13 @@ class Board_m extends CI_Model {
 	
 	function delete_board($table, $id) {
 		$delete_array = array(
-			'board_id' => $id	
+			'board_is_del' => 'Y'	
 		);
 		
-		$result = $this->db->delete($table, $delete_array);
+		$where = array(
+			'board_id' => $id
+		);
+		$result = $this->db->update($table, $delete_array, $where);
 		
 		return $result;
 	}
