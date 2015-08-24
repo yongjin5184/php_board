@@ -101,8 +101,8 @@ class Board_m extends CI_Model {
 	
 	function modify_board($arrays){
 		$modify_array = array(
-				'subject' => $arrays['subject'],
-				'contents' =>$arrays['contents']
+				'board_subject' => $arrays['board_subject'],
+				'board_contents' =>$arrays['board_contents']
 		);
 		
 		$where = array(

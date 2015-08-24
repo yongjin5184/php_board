@@ -72,7 +72,7 @@
 							?>
 								<a
 								href="/php_board/bbs/board/modify/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
-								class="btn btn-warning">수정</a>
+								>수정</a>
 								<a
 								href="/php_board/bbs/board/delete/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
 								class="btn btn-danger">삭제</a> 

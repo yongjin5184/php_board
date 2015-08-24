@@ -184,8 +184,8 @@ Class Board extends CI_Controller {
 			$modify_data = array(
 					'table' => $this->uri->segment(3), //게시판 테이블명
 					'board_id' => $this->uri->segment(5), //게시물 번호
-					'subject' => $this->input->post('subject', TRUE),
-					'contents' => $this->input->post('contents', TRUE),
+					'board_subject' => $this->input->post('board_subject', TRUE),
+					'board_contents' => $this->input->post('board_contents', TRUE),
 			);
 			
 			$result = $this->board_m->modify_board($modify_data);

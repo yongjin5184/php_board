@@ -10,19 +10,19 @@
 				<div class="control-group">
 					<label class="control-label" for="input01">제목</label>
 					<div class="controls">
-						<input type="text" class="input-xlarge" id="input01"
-							name="subject" value="<?php echo $views[0]->subject;?>">
+						<input type="text" id="input01"
+							name="board_subject" value="<?php echo $views[0]->board_subject;?>">
 						<p class="help-block"></p>
 					</div>
 					<label class="control-label" for="input02">내용</label>
 					<div class="controls">
-						<textarea class="input-xlarge" id="input02" name="contents"
-							rows="5"><?php echo $views[0]->contents;?></textarea>
+						<textarea id="input02" name="board_contents"
+							cols="150" rows="30"><?php echo $views[0]->board_contents;?></textarea>
 						<p class="help-block"></p>
 					</div>
 
 					<div class="form-actions">
-						<button type="submit" class="btn btn-primary" id="write_btn">수정</button>
+						<button type="submit" id="write_btn">수정</button>
 						<button class="btn" onclick="document.location.reload()">취소</button>
 					</div>
 				</div>
