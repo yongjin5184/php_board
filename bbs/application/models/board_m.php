@@ -94,9 +94,9 @@ class Board_m extends CI_Model {
 	function insert_reply_board($arrays){
 		$insert_array = array(
 				'board_id' => $arrays['board_id'],
-				're_user_id' =>  $arrays['id'],
-				're_contents' => $arrays['contents'],
-				're_reg_date' => date("Y-m-d H:i:s")
+				'bc_users_id' =>  $arrays['id'],
+				'bc_contents' => $arrays['contents'],
+				'bc_reg_date' => date("Y-m-d H:i:s")
 		);
 		$result = $this->db->insert('board_comment', $insert_array);
 		return $result;
