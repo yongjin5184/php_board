@@ -30,10 +30,16 @@
                		$table_name = $this->uri->segment(3);
               	?>
               </th>
+             
               <td>
 				<form id="myForm" action="/php_board/bbs/<?=$board_name;?>/view/<?=$table_name?>/board_id/<?=$lt->id?>" method="post" name="myForm">
 	    	          <input type="hidden" name="rownum" value="<?=$index_rownum?>"/>
-	        	      <a id="a_tag_sub1" href="javascript: document.getElementsByName('myForm')[<?php echo $j?>].submit();"><?=$lt->subject;?></a>
+	        	      <a id="a_tag_sub1" href="javascript:if('<?=@$this->session->userdata['logged_in']?>' == 1)
+	        	      										{
+	        	      										document.getElementsByName('myForm')[<?php echo $j?>].submit();
+	        	      										}else{
+	        	      										alert('로그인이 필요합니다.');
+	        	      										}"><?=$lt->subject;?></a>
 	            </form>
               </td>
               <td><?=$lt->users_id;?></td>

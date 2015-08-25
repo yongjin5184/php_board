@@ -83,7 +83,6 @@ $(document).ready(function() {
 	 * expand span click
 	 */
 	$(".expand").click(function(){
-		console.log("expand!!");
 		var $div_users_info = $(this).parent();
 		var $expand_content = $(this).parent().next();
 		if($expand_content.hasClass("none") == true){ //확장
@@ -99,6 +98,10 @@ $(document).ready(function() {
 			$(this).text("▼expand");
 		}
 	});
+	
+	$(".myForm_tag").click(function(){
+		
+	});
 });
 
 /*
@@ -109,4 +112,6 @@ function board_search_enter(form) {
 	if (keycode == 13)
 		$("#search_btn").click();
 }
+
+
 
