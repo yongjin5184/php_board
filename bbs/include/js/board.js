@@ -124,17 +124,32 @@ $(document).ready(function() {
 /*
  * search button click
  */
-function board_search_enter(form) {
-	var keycode = window.event.keyCode;
-	if (keycode == 13)
-		$("#search_btn").click();
-}
 
+$('#question').bind('keypress', function(e) {
+	if(e.keyCode==13){
+		$("#search_btn").click();
+	}
+});
+/*
+ * subject click
+ */
 function click_subject(logged_check, index){
 	if(logged_check == 1){
 		document.getElementsByName('content_form')[index].submit();
 	}else{
 		alert('로그인이 필요합니다.');
 	}
+}
+/*
+ * pre_picture
+ */
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#prev_img').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 

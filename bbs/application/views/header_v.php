@@ -56,12 +56,15 @@
 		<div id="tab2" class="tab_content">	
   		<div id="users_info_content">
 	  		<div class="users_info">
-				<span>사진 : </span>
+				<span>사진 : </span><span class="expand">▼expand</span>
 				<form action="http://localhost:8080/php_board/bbs/upload/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">
-				<input type="file" name="userfile" size="20" />
+				<input type="file" name="userfile" onchange="readURL(this);" size="20" />
 				<input type="hidden" name="userid" value="<?php echo $this->session->userdata('id')?>"/>
 				<input type="submit" value="upload" />
-				</form> 	
+				</form>
+			</div>
+			<div class="none">
+				<img id="prev_img" src="/php_board/bbs/include/images/no_pic.jpg" alt="your image"/>
 			</div>
 	  		<div class="users_info">
 				<a>이름 : </a><span><?php echo $this->session->userdata('username')?></span>

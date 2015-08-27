@@ -44,24 +44,16 @@ class Board_m extends CI_Model {
 	 */
 	function get_view($table, $id, $table_comment='') { 
 		$sql_array = array();
-		// 조회수 증가
-// 		$sql0 = "UPDATE " . $table . " SET board_hits = board_hits+1 WHERE board_id='" . $id . "'";
-		$data = array(
-			'board_hits' => 'board_hits + 1'				
-		);
-		$this->db->where('board_id', $id);
-		$this->db->set('board_hits', 'board_hits+1', FALSE);
-		$this->db->update('board');
-// 		join table;
+		// 		join table;
 		$this->db->select('*');
 		$this->db->from('board as b');
 		$this->db->join('users as u', 'b.users_id = u.users_id');
 		$this->db->where('b.board_id', $id);
 		$query = $this->db->get();
 		$result = $query->row();
-// 		exit;
-		// 게시물 내용 반환
+		// 게시물에 달린 댓글 조회
 		$sql_array[0] = $result;
+		
 		if($table_comment != ''){ // $table_comment 변수가 있을 때만 실행
 // 			$sql2 = "SELECT * FROM " .$table_comment. " WHERE board_id=". $id ." order by board_id desc";
 			$this->db->select('*');
@@ -76,13 +68,22 @@ class Board_m extends CI_Model {
 // 			var_dump($result1);
 // 			exit;
 		}
- 		
+		
  		return $sql_array;
 	}
 	
-	function update_hits(){
-		
+	function update_hits($id){
+		// 조회수 증가
+		// 		$sql0 = "UPDATE " . $table . " SET board_hits = board_hits+1 WHERE board_id='" . $id . "'";
+		$data = array(
+				'board_hits' => 'board_hits + 1'
+		);
+		$this->db->where('board_id', $id);
+		$this->db->set('board_hits', 'board_hits+1', FALSE);
+		$this->db->update('board');
+		// 		exit;
 	}
+	
 	function insert_board($arrays){
 		$insert_array = array(
 				'users_id' => $arrays['id'],
@@ -136,10 +137,11 @@ class Board_m extends CI_Model {
 		// 여기서 데이터베이스 처리하고 다시 뷰로 넘겨줘야함.
 		$this->db->select('*');
 		$this->db->where('users_id', $users_id);
-		$this->db->where('users_password', $users_password);
+// 		$this->db->where('users_password', $users_password);
 		$query = $this->db->get("users");
 		$result = $query->row_array();
-		if(!empty($result)){
+		
+		if($users_password == $this->encrypt->decode($result['users_password'])){
 			return $result;
 		}else{
 			return null;			

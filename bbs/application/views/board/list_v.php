@@ -16,7 +16,6 @@
          
         $j = 0;
         $i = 0;
-//      $my_rownum = $list[0]->rownum; // 14
         foreach ($list as $lt)
 		{
         ?>
@@ -55,7 +54,7 @@
       <!--form id="bd_search" method="post" class="well form-search" -->
         <i class="icon-search"></i> 
         <form action="/php_board/bbs/<?=$this->uri->segment(1);?>/search/<?=$this->uri->segment(3);?>" method="post">
-        <input type="text" name="search_word" id="question" onkeypress="board_search_enter(document.question);" class="input-medium search-query" /> 
+        <input type="text" name="search_word" id="question"/> 
         <input type="submit" value="검색" id="search_btn" class="btn btn-primary" />
   		</form>
   	</div>

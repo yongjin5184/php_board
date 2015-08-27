@@ -97,5 +97,6 @@ select * from board_comment;
 select * from users;
 
 SELECT * FROM board_comment as bc join board as b on bc.board_id = b.board_id;
-
+-- /jW8nuamxMups13hVm3xiMiL8DS4vK0r1r05eMxs7+/plUQb5kdaCOw8IidfOtspJLTRTJdxzahEQsd8smQRhw==
+-- qCp5opLS7j117GMmgChfp67fdtHYXheQzwR2iFpNDjFxCGdm5yIoQepdeJzC3j2hII6p7X8smN1U6TOeQm664Q==
 SELECT * FROM board_comment as bc join users u on u.users_id = bc.bc_users_id WHERE bc.board_id=3;

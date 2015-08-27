@@ -1,4 +1,4 @@
-<article id="tab_container">
+<div id="tab_container">
 	<div id="tab1" class="tab_content" style="display: block;">
 		<header>
 			<h1></h1>
@@ -14,8 +14,17 @@
 			</thead>
 			<tbody>
 				<tr>
-					<th colspan="4">
-						<?=$result[0]->board_contents;?>
+					<th colspan="5">
+						<textarea rows="1" cols="220" readonly="readonly" class="text_area">
+							<?=$result[0]->board_subject;?>
+						</textarea>
+					</th>
+				</tr>
+				<tr>
+					<th colspan="5">
+						<textarea rows="20" cols="220" readonly="readonly" class="text_area">
+							<?=$result[0]->board_contents;?>
+						</textarea>
 					</th>
 				</tr>
 			</tbody>
@@ -26,11 +35,11 @@
 						<td>
 						<hr/>
 						<!-- board id를 hidden 으로 넘김. -->
-							<form class="form-horizontal" method="post" action="" id="write_action">
-								<input type="text" class="form-control" name ="id" placeholder="아이디" >&nbsp;&nbsp;
-								<input type="text" class="form-control" placeholder="내용" name="contents" style="width:400px">
+							<form method="post" action="" id="write_action">
+								<input type="hidden" name ="id" value="<?=$this->session->userdata['id']?>" >
+								<p>댓글을 입력하세요</p><input type="text" placeholder="내용" name="contents" style="width:400px; height: 20px; ">
 								<input type="hidden" name="board_id" value= "<?=$this->uri->segment(5);?>">
-								<button type="submit" class="btn btn-primary" id="re_write_btn">작성</button>
+								<button type="submit" id="re_write_btn">작성</button>
 							</form>
 						</td>
 					</tr> 
@@ -38,15 +47,13 @@
 				<tbody>
 				    <?php 
 				    if($result[1] != null){
-//         			for ($i = 0; $i < sizeof($result[1]); $i++){
         			foreach ($result[1] as $rs)	{
         			?>
 					<tr>
 						<td>
 						<hr style="border-top: dotted 2px black;"/>
-						<!-- -->
 						<?php if($rs->users_profile_path != ''){?>
-						<img src="<?=$rs->users_profile_path;?>" alt="Smiley face" width="42" height="42" alt="smile">
+						<img src="<?=$rs->users_profile_path;?>" alt="profile_img" width="42" height="42" alt="smile">
 						<span><?=$rs->bc_users_id;?></span> &nbsp <span><?=$rs->bc_reg_date;?></span> 
 						<br/>
 						<span><?=$rs->bc_contents;?></span>
@@ -57,16 +64,11 @@
 				</tbody>
 				<tfoot align="left">
 					<tr>
-					<!-- rownum을 넘겨서 게시판으로 넘어갈 때 페이징된 곳으로 넘어갈 수 있도록 함
-						(전체  - rownum) / 5 + 1 
-					 -->
 						<th><a
-							href="/php_board/bbs/board/lists/<?=$this->uri->segment(3)?><?php if($my_page != 0){ echo "/page/".$my_page; };  ?>"
+							href="/php_board/bbs/board/lists/<?=$this->uri->segment(3)?><?php if($my_page != 0){echo "/page/".$my_page; };?>"
 							class="btn btn-primary">목록</a> 
 							 
 							<?php 
-// 								echo var_dump($this->session->userdata);
-// 								exit;
 								$session_id = $this->session->userdata['id'];
 								$user_id = $result[0]->users_id;
 								if($session_id == $user_id){
@@ -87,4 +89,4 @@
 			</table>
 		</table>
 	</div>
-</article>
+</div>

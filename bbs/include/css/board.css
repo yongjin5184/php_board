@@ -9,7 +9,7 @@
 .block{
 	display: block;
 	width: 30%;
-	height: 90px;
+	height: 120px;
 	background-color:#F4F4F4;
 	border-bottom: 1px solid #000000;
 }
@@ -204,6 +204,12 @@ html ul.tab li.active a {
 	border-bottom: 1px solid #000000;
 }
 
+#prev_img{
+	width:120px;
+	height: 100px;
+	float: center;
+}
+
 .expand{
 	float:right;
 	display : inline;
@@ -223,4 +229,20 @@ html ul.tab li.active a {
 
 #comment_table{
 	width : 100%;
+}
+
+/*
+* textarea 
+*/
+
+.text_area{
+	font-size: 20px; 
+	text-align:left; 
+	white-space: normal;
+}
+
+#input_subject{
+	font-size: 25px; 
+	width: 700px;
+	height: 30px
 }

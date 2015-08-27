@@ -6,8 +6,9 @@ Class Board extends CI_Controller {
     parent::__construct();
     $this->load->database();
     $this->load->model('board_m');
-    $this->load->helper(array('url','date'));
+    $this->load->library('encrypt');
     $this->load->library('session');
+    $this->load->helper(array('url','date'));
     $this->load->helper('form');
     $this->load->helper('url');
   }
@@ -45,6 +46,7 @@ Class Board extends CI_Controller {
 // 	  	echo "넘어오는 값 : " . $search_word;
 //   	}
 // 	echo "리스트 페이지: " . $this->uri->segment(5);
+  	
 	$table_name = $this->uri->segment(3);
   	//페이지네이션 라이브러리 로딩 추가
   	$this->load->library('pagination');
@@ -100,13 +102,23 @@ Class Board extends CI_Controller {
   	//게시판 이름과 게시물 번호에 해당하는 게시물 가져오기
   	$board_name = $this->uri->segment(3);
   	$table_name = $this->uri->segment(5);
-  	$result = $this->board_m->get_view($board_name, $table_name,'board_comment');
-  	$total_rows = $this->board_m->get_list($board_name, 'count');
-  	
-  	//넘어오는 rownum , ceil(row / 5) * 5 한 것이 페이지 번호
-//    	echo "로우 넘: " . $this->input->post('rownum' , TRUE) . " 전체 로우 : " .$total_rows;
+  	$visited_page = $this->session->userdata['visited_page'];
   	$rownum = $this->input->post('rownum' , TRUE); //rownum 만 넘어 왔을 때 페이징 처리를 위해
-  	$my_page = $total_rows - $rownum; 
+  	if(!in_array($rownum, $visited_page)){
+  		array_push($visited_page, $rownum);
+  		$result_hit = $this->board_m->update_hits($table_name);
+  		$sess_array = array(
+  				'visited_page' => $visited_page
+  		);
+  		$this->session->set_userdata($sess_array);
+  	}
+  	
+  	$total_rows = $this->board_m->get_list($board_name, 'count');
+  	$my_page = $total_rows - $rownum;
+  	$result = $this->board_m->get_view($board_name, $table_name,'board_comment');
+  	
+	//넘어오는 rownum , ceil(row / 5) * 5 한 것이 페이지 번호
+	//echo "로우 넘: " . $this->input->post('rownum' , TRUE) . " 전체 로우 : " .$total_rows;
   	$data = array(
   			"result" => $result,
   			"rownum" => $rownum,
@@ -230,8 +242,9 @@ Class Board extends CI_Controller {
 	function auth(){
 		$users_id =  $this->input->post('id');
 		$users_password = $this->input->post('password');
+// 		$encode_password = $this->encrypt->encode($users_password);
 		$data = $this->board_m->select_users($users_id, $users_password);
-
+		$visited_page = array();
 		if($data != null){
 			$username = $data['users_name'];
 			$email = $data['users_email'];
@@ -242,7 +255,8 @@ Class Board extends CI_Controller {
 				'email' => $email,
 				'level' =>$level,
 				'id' => $id,
-				'logged_in' =>TRUE
+				'logged_in' =>TRUE,
+				'visited_page' => $visited_page
 			);
  			$this->session->set_userdata($sess_array);
 			echo json_encode($sess_array);
