@@ -3,11 +3,10 @@
 		<header>
 			<h1></h1>
 		</header>
-		<table id="view_table" class="table table-striped">
+		<table id="view_table">
 			<thead>
 				<tr>
-					<th><?=$result[0]->board_subject;?></th>
-					<th>이름 : <?=$result[0]->board_contents;?></th>
+					<th>이름 : <?=$result[0]->users_name;?></th>
 					<th>조회수 : <?=$result[0]->board_hits;?></th>
 					<th>등록일 : <?=$result[0]->board_reg_date;?></th>
 					<th>작성자 : <?=$result[0]->users_id?></th>
@@ -16,7 +15,7 @@
 			<tbody>
 				<tr>
 					<th colspan="4">
-					<?=$result[0]->board_contents;?>
+						<?=$result[0]->board_contents;?>
 					</th>
 				</tr>
 			</tbody>

@@ -3,11 +3,11 @@
     <table id= "list_table">
       <thead>
         <tr>
-          <th scope="col">번호</th>
-          <th scope="col">제목</th>
-          <th scope="col">작성자</th>
-          <th scope="col">조회수</th>
-          <th scope="col">작성일</th>
+          <th>번호</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>조회수</th>
+          <th>작성일</th>
         </tr>
       </thead>
       <tbody>
@@ -32,19 +32,14 @@
               </th>
              
               <td>
-				<form id="myForm" action="/php_board/bbs/<?=$board_name;?>/view/<?=$table_name?>/board_id/<?=$lt->id?>" method="post" name="myForm">
+				<form action="/php_board/bbs/<?=$board_name;?>/view/<?=$table_name?>/board_id/<?=$lt->id?>" method="post" name="content_form">
 	    	          <input type="hidden" name="rownum" value="<?=$index_rownum?>"/>
-	        	      <a id="a_tag_sub1" href="javascript:if('<?=@$this->session->userdata['logged_in']?>' == 1)
-	        	      										{
-	        	      										document.getElementsByName('myForm')[<?php echo $j?>].submit();
-	        	      										}else{
-	        	      										alert('로그인이 필요합니다.');
-	        	      										}"><?=$lt->subject;?></a>
+	        	      <a href="javascript: click_subject('<?=@$this->session->userdata['logged_in']?>', <?=$j?>);"><?=$lt->subject;?></a>
 	            </form>
               </td>
               <td><?=$lt->users_id;?></td>
               <td><?=$lt->hits;?></td>
-              <td><time datetime="<?=mdate("%Y-%M-%j", human_to_unix($lt->reg_date));?>"><?=mdate("%M. %j, %Y", human_to_unix($lt->reg_date));?></time></td>
+              <td><?=mdate("%M. %j, %Y", standard_date($lt->reg_date));?></td>
           </tr>
 
           <?php
@@ -60,7 +55,7 @@
       <!--form id="bd_search" method="post" class="well form-search" -->
         <i class="icon-search"></i> 
         <form action="/php_board/bbs/<?=$this->uri->segment(1);?>/search/<?=$this->uri->segment(3);?>" method="post">
-        <input type="text" name="search_word" id="q" onkeypress="board_search_enter(document.q);" class="input-medium search-query" /> 
+        <input type="text" name="search_word" id="question" onkeypress="board_search_enter(document.question);" class="input-medium search-query" /> 
         <input type="submit" value="검색" id="search_btn" class="btn btn-primary" />
   		</form>
   	</div>

@@ -18,11 +18,11 @@ $(document).ready(function() {
 		return false;
 	});
 	$("#search_btn").click(function() {
-		if ($("#q").val() == '') {
+		if ($("#question").val() == '') {
 			alert("검색어를 입력하세요");
 			return false;
 		} else {
-			alert(("#q").val());
+			alert(("#question").val());
 		}
 	});
 
@@ -99,7 +99,24 @@ $(document).ready(function() {
 		}
 	});
 	
-	$(".myForm_tag").click(function(){
+	$(".btn-green").click(function(){
+		console.log("!");
+//		console.log($(this).parent().find("input").attr("value"));
+		$prev_span = $(this).parent().prev().find("span").eq(0);
+		$modify_val = $(this).parent().find("input").attr("value");
+		$users_id = $(".users_info").find("input").eq(1).attr("value");
+		
+		$.ajax({
+			type : 'POST',
+			data : {modify_val:$modify_val, users_id:$users_id},
+			url : 'http://localhost:8080/php_board/bbs/board/modify_where',
+			success : function(data) {
+				console.log("성공");
+			},
+			error : function(data){
+				console.log("실패!");
+			}
+		});
 		
 	});
 });
@@ -113,5 +130,11 @@ function board_search_enter(form) {
 		$("#search_btn").click();
 }
 
-
+function click_subject(logged_check, index){
+	if(logged_check == 1){
+		document.getElementsByName('content_form')[index].submit();
+	}else{
+		alert('로그인이 필요합니다.');
+	}
+}
 

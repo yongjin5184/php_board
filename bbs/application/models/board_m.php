@@ -80,6 +80,9 @@ class Board_m extends CI_Model {
  		return $sql_array;
 	}
 	
+	function update_hits(){
+		
+	}
 	function insert_board($arrays){
 		$insert_array = array(
 				'users_id' => $arrays['id'],
@@ -152,6 +155,18 @@ class Board_m extends CI_Model {
 		);
 		
 		$result = $this->db->update('users', $data, $where);
+		return $result;
+	}
+	
+	function update_users($arrays) {
+		$modify_array = array(
+				'users_name' => $arrays['modify_val']
+		);
+		
+		$where = array(
+				'users_id' =>$arrays['users_id']
+		);
+		$result = $this->db->update("users", $modify_array, $where);
 		return $result;
 	}
 }

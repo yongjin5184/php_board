@@ -262,6 +262,15 @@ Class Board extends CI_Controller {
 		</script>";
 		exit;
 	}
+	
+	function modify_where(){
+		$modify_val =  $this->input->post('modify_val');
+		$users_id = $this->input->post('users_id');
+		$modify_data = array(
+				'modify_val' => $modify_val,
+				'users_id' => $users_id
+		);
+		$data = $this->board_m->update_users($modify_data);
+		echo "성공";		
+	}
 }
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

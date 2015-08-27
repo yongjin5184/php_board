@@ -64,10 +64,17 @@ CREATE TABLE IF NOT EXISTS `board_picture`(
 
 INSERT INTO board (users_id, board_subject, board_contents, board_hits, board_reg_date, board_is_del, board_password) values ('asdf','안녕하세요', '자기소개입니다.', 0, '2012-12-22', 'N', '');
 INSERT INTO board (users_id, board_subject, board_contents, board_hits, board_reg_date, board_is_del, board_password) values ('qwer','안녕하세요1', '자기소개입니다.', 0, '2012-12-22', 'N', '');
+INSERT INTO board (users_id, board_subject, board_contents, board_hits, board_reg_date, board_is_del, board_password) values ('asdf','안녕하세요2', '자기소개입니다.', 0, '2012-12-22', 'N', '');
+INSERT INTO board (users_id, board_subject, board_contents, board_hits, board_reg_date, board_is_del, board_password) values ('qwer','안녕하세요3', '자기소개입니다.', 0, '2012-12-22', 'N', '');
+INSERT INTO board (users_id, board_subject, board_contents, board_hits, board_reg_date, board_is_del, board_password) values ('asdf','안녕하세요4', '자기소개입니다.', 0, '2012-12-22', 'N', '');
+INSERT INTO board (users_id, board_subject, board_contents, board_hits, board_reg_date, board_is_del, board_password) values ('qwer','안녕하세요5', '자기소개입니다.', 0, '2012-12-22', 'N', '');
+INSERT INTO board (users_id, board_subject, board_contents, board_hits, board_reg_date, board_is_del, board_password) values ('asdf','안녕하세요6', '자기소개입니다.', 0, '2012-12-22', 'N', '');
+INSERT INTO board (users_id, board_subject, board_contents, board_hits, board_reg_date, board_is_del, board_password) values ('qwer','안녕하세요7', '자기소개입니다.', 0, '2012-12-22', 'N', '');
 select * from board where board_is_del in ('N');
 INSERT INTO board_comment (board_id, bc_users_id, bc_contents, bc_reg_date) value (2, 'asdf' ,'첫 번째 댓글입니다.', '2014-05-10');
 INSERT INTO board_comment (board_id, bc_users_id, bc_contents, bc_reg_date) value (3, 'qwer' ,'두 번째 댓글입니다.', '2014-05-10');
 INSERT INTO board_comment (board_id, bc_users_id, bc_contents, bc_reg_date) value (3, 'asdf' ,'세 번째 댓글입니다.', '2014-05-10');
+INSERT INTO board_comment (board_id, bc_users_id, bc_contents, bc_reg_date) value (3, 'asdf' ,'네 번째 댓글입니다.', '2014-05-10');
 SELECT * FROM board_comment;
 SELECT * FROM board where board_is_del NOT IN('N') and (board_subject LIKE"%안%" or board_contents like "%안%");
 select count(*) from board;
@@ -91,4 +98,4 @@ select * from users;
 
 SELECT * FROM board_comment as bc join board as b on bc.board_id = b.board_id;
 
-SELECT * FROM board_comment as bc join users u on u.users_id = bc.bc_user_id WHERE bc.board_id=5;
+SELECT * FROM board_comment as bc join users u on u.users_id = bc.bc_users_id WHERE bc.board_id=3;

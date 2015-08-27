@@ -31,14 +31,13 @@ class Upload extends CI_Controller {
 			);
 			$file_name = $data['file_name'];
 			$users_id = $this->input->post('userid' , TRUE);
-			echo "file name = " . $file_name. "users_id = " . $users_id;
+// 			echo "file name = " . $file_name. "users_id = " . $users_id;
 			$result = $this->board_m->insert_users_profile_path($data);
-			if($result){
-				$this->load->view ('board/upload_success', $data );
-			}else{
-				echo "error!";
-				exit;
-			}
+			echo
+  			"<script>
+				alert('입력되었습니다.');
+				location.href = 'http://localhost:8080/php_board/bbs/board/lists/board/';</script>"; 
+  			exit;
 		}
 	}
 }
