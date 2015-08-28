@@ -10,7 +10,7 @@ drop table users;
 
 CREATE TABLE `users` (
     users_id VARCHAR(50) NOT NULL,
-    users_password VARCHAR(50) NOT NULL,
+    users_password VARCHAR(100) NOT NULL,
     users_name VARCHAR(50) NOT NULL,
     users_email VARCHAR(50) NULL,
     users_level enum('A','N') NOT NULL DEFAULT 'N',
@@ -22,7 +22,7 @@ CREATE TABLE `users` (
 CREATE TABLE IF NOT EXISTS `board`(
 	 board_id INT AUTO_INCREMENT NOT NULL,
      users_id varchar(50) NOT NULL,
-     board_subject VARCHAR(50) NOT NULL,
+     board_subject VARCHAR(60) NOT NULL,
      board_contents TEXT NOT NULL,
      board_hits INT NOT NULL,
      board_reg_date DATETIME NOT NULL,
@@ -35,11 +35,12 @@ CREATE TABLE IF NOT EXISTS `board`(
 CREATE TABLE IF NOT EXISTS `board_comment` (
 	bc_id INT AUTO_INCREMENT NOT NULL,
     board_id INT NOT NULL,
-    bc_users_id VARCHAR(20) NOT NULL,
+    users_id VARCHAR(20) NOT NULL,
     bc_contents TEXT NOT NULL,
     bc_reg_date DATETIME NOT NULL,
     PRIMARY KEY (bc_id),
-    FOREIGN KEY (board_id) REFERENCES board(board_id) 
+    FOREIGN KEY (board_id) REFERENCES board(board_id),
+    FOREIGN KEY (users_id) REFERENCES users(users_id)
 )engine=InnoDB CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `sessions` (
@@ -57,7 +58,6 @@ CREATE TABLE IF NOT EXISTS `board_picture`(
     board_pic_subject VARCHAR(20) NOT NULL,
     board_pic_path VARCHAR(100) NOT NULL,
 	board_pic_date DATETIME NULL,
-    board_pic_is_del ENUM('Y','N') NOT NULL DEFAULT 'N',
     PRIMARY KEY(board_pic_id),
     FOREIGN KEY(board_id) REFERENCES board(board_id)
 )engine=InnoDB CHARSET=utf8;

@@ -1,22 +1,22 @@
-.none{
+.none {
 	display: none;
 }
 
-.inline{
+.inline {
 	display: inline;
 }
 
-.block{
+.block {
 	display: block;
 	width: 30%;
 	height: 120px;
-	background-color:#F4F4F4;
+	background-color: #F4F4F4;
 	border-bottom: 1px solid #000000;
 }
 
 .center {
-	padding : 10px;
-	display : center;
+	padding: 10px;
+	display: center;
 	margin: 0 auto;
 }
 
@@ -102,10 +102,6 @@ html ul.tab li.active a {
 
 .tab_content {
 	font-size: 1.2em;
-	/*
-	border: 1px solid #000; 
-	border-top-style: none;
-	*/
 }
 
 /*
@@ -146,18 +142,20 @@ html ul.tab li.active a {
 /*
 *header- div_sub_tab 
 */
-#div_sub_tab{
+#div_sub_tab {
+	
 }
 
-#div_sub_tab ul{
+#div_sub_tab ul {
 	top: 2px;
-	list-style:none;
+	list-style: none;
 }
 
 #div_sub_tab ul li>:first-child {
+	
 }
 
-#div_sub_tab ul li a{
+#div_sub_tab ul li a {
 	border: 1px solid #000000;
 	font-size: 1.1em;
 	padding: 5px;
@@ -167,82 +165,92 @@ html ul.tab li.active a {
 /*
 *header - div_login
 */
-#div_login{
-	list-style:none;
+#div_login {
+	list-style: none;
 }
 
-#show_login{
-	list-style:none;
-	display:inline;
+#show_login {
+	list-style: none;
+	display: inline;
 }
-.tab_login{
+
+.tab_login {
 	margin-top: 10px;
 }
-.tab_login>:first-child{
-	list-style:none;
-	display:inline;
-}
-#input_pw, #input_id{
-	height: 35px;
-	width : 200px;
+
+.tab_login>:first-child {
+	list-style: none;
+	display: inline;
 }
 
-#input_password, #input_id, #btn_login{
+#input_pw, #input_id {
+	height: 35px;
+	width: 200px;
+}
+
+#input_password, #input_id, #btn_login {
 	height: 20px;
 }
 /*
 *list_v - users_info_table
 */
-#users_info_content{
+#users_info_content {
 	
 }
 
-.users_info{
+.users_info {
 	width: 30%;
 	height: 70px;
-	background-color:#F4F4F4;
+	background-color: #F4F4F4;
 	border-bottom: 1px solid #000000;
 }
 
-#prev_img{
-	width:120px;
+#prev_img {
+	width: 120px;
 	height: 100px;
 	float: center;
 }
 
-.expand{
-	float:right;
-	display : inline;
+.expand {
+	float: right;
+	display: inline;
 }
 
-.btn-green{
+.btn-green {
 	background-color: #008B00;
-	color : #ffffff;
+	color: #ffffff;
 }
 
 /*
 * view_table
 */
-#view_table{
+#view_table {
 	width: 100%;
 }
 
-#comment_table{
-	width : 100%;
+#comment_table {
+	width: 100%;
 }
 
 /*
 * textarea 
 */
-
-.text_area{
-	font-size: 20px; 
-	text-align:left; 
+.text_area {
+	font-size: 20px;
+	text-align: left;
 	white-space: normal;
 }
 
-#input_subject{
-	font-size: 25px; 
+#input_subject {
+	font-size: 25px;
 	width: 700px;
 	height: 30px
+}
+
+/*
+* admin_content
+*/
+.admin_content {
+	width: 46%;
+	background-color: #FEF1E9;
 }

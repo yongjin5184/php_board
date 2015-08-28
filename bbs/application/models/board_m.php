@@ -4,7 +4,6 @@ class Board_m extends CI_Model {
 		parent::__construct ();
 	}
 	function get_list($table='board', $type='', $offset='', $limit='', $search_word='') {
-// 		$sword= ' WHERE 1=1 '; //항상 참인 조건
  		$sword= " where board_is_del IN ('N')";
 		if ( $search_word != '' )
      	{
@@ -20,7 +19,6 @@ class Board_m extends CI_Model {
      		$limit_query = ' LIMIT '.$offset.', '.$limit; //$offset번 데이터 부터 $limit개를 가져온다.
      	}
 		//select (@rownum:=@rownum+1) rownum ,user_name, subject, contents,hits, reg_date from ci_board ,(select @rownum:=0) TMP;
-// 		echo "옵셋 : " . $offset;
     	$sql = "select board_id as id, (@rownum:=@rownum+1) as rownum, users_id, board_subject as subject, board_contents as contents, board_hits as hits, board_is_del, board_reg_date as reg_date FROM ".$table.",(select @rownum:='".$offset."') TMP ".$sword." ORDER BY id desc, rownum desc ".$limit_query;
    		$query = $this->db->query($sql);
    		
@@ -28,8 +26,6 @@ class Board_m extends CI_Model {
      	{
      		//리스트를 반환하는 것이 아니라 전체 게시물의 갯수를 반환
 	    	$result = $query->num_rows();
-// 	    	echo "전체 수 : " . $result;
-	    	//$this->db->count_all($table);
      	}
      	else
      	{
@@ -58,15 +54,12 @@ class Board_m extends CI_Model {
 // 			$sql2 = "SELECT * FROM " .$table_comment. " WHERE board_id=". $id ." order by board_id desc";
 			$this->db->select('*');
 			$this->db->from($table_comment);
-			$this->db->join('users as u', 'board_comment.bc_users_id = u.users_id');
+			$this->db->join('users as u', 'board_comment.users_id = u.users_id');
 			$this->db->where('board_comment.board_id', $id);
 			$this->db->order_by('board_comment.board_id', 'desc');
 			$query1 = $this->db->get();
 			$result1 = $query1->result();
 			$sql_array[1] = $result1;
-// 			echo $this->db->last_query();
-// 			var_dump($result1);
-// 			exit;
 		}
 		
  		return $sql_array;
@@ -81,7 +74,6 @@ class Board_m extends CI_Model {
 		$this->db->where('board_id', $id);
 		$this->db->set('board_hits', 'board_hits+1', FALSE);
 		$this->db->update('board');
-		// 		exit;
 	}
 	
 	function insert_board($arrays){
@@ -98,7 +90,7 @@ class Board_m extends CI_Model {
 	function insert_reply_board($arrays){
 		$insert_array = array(
 				'board_id' => $arrays['board_id'],
-				'bc_users_id' =>  $arrays['id'],
+				'users_id' =>  $arrays['id'],
 				'bc_contents' => $arrays['contents'],
 				'bc_reg_date' => date("Y-m-d H:i:s")
 		);
@@ -169,6 +161,28 @@ class Board_m extends CI_Model {
 				'users_id' =>$arrays['users_id']
 		);
 		$result = $this->db->update("users", $modify_array, $where);
+		return $result;
+	}
+	
+	function get_users(){
+		$this->db->select('*');
+		$query = $this->db->get("users");
+		$result = $query->result();
+		return $result;
+	}
+	
+	function insert_users($arrays){
+		$insert_array = array(
+				'users_id' => $arrays['users_id'],
+				'users_password' => $arrays['users_password'],
+				'users_name' =>  $arrays['users_name'],
+				'users_email' => $arrays['users_email'],
+				'users_level' => $arrays['users_level'],
+				'users_reg_date' => date("Y-m-d H:i:s")
+		);
+		$result = $this->db->insert('users', $insert_array);
+		echo $this->db->last_query();
+		exit;
 		return $result;
 	}
 }

@@ -51,11 +51,9 @@
       	</tr>
       </tfoot>
     </table>
-      <!--form id="bd_search" method="post" class="well form-search" -->
-        <i class="icon-search"></i> 
         <form action="/php_board/bbs/<?=$this->uri->segment(1);?>/search/<?=$this->uri->segment(3);?>" method="post">
-        <input type="text" name="search_word" id="question"/> 
-        <input type="submit" value="검색" id="search_btn" class="btn btn-primary" />
+        <input type="text" name="search_word" id="question" maxlength="20"/> 
+        <input type="submit" value="검색" id="search_btn"/>
   		</form>
   	</div>
   </div>

@@ -14,6 +14,20 @@ $(document).ready(function() {
 		$(this).addClass("active");
 		$(".tab_content").hide();
 		var activeTab = $(this).find("a").attr("href");
+		$sub_add = $("#div_sub_tab").find("ul > li").find("a").eq(2);
+		if(activeTab == "#tab3"){
+			if ($sub_add.hasClass("none") == true) {
+				$(".wrapper_content").empty();
+				$sub_add.removeClass("none");
+				$sub_add.addClass("inline");
+			}
+		}else{
+			if ($sub_add.hasClass("none") != true) {
+				$sub_add.removeClass("inline");
+				$sub_add.addClass("none");
+			}
+		}
+		
 		$(activeTab).fadeIn();
 		return false;
 	});
@@ -100,8 +114,6 @@ $(document).ready(function() {
 	});
 	
 	$(".btn-green").click(function(){
-		console.log("!");
-//		console.log($(this).parent().find("input").attr("value"));
 		$prev_span = $(this).parent().prev().find("span").eq(0);
 		$modify_val = $(this).parent().find("input").attr("value");
 		$users_id = $(".users_info").find("input").eq(1).attr("value");
@@ -117,9 +129,106 @@ $(document).ready(function() {
 				console.log("실패!");
 			}
 		});
-		
+	});
+	
+	$("#add_admin_content").bind("click",function(){
+		console.log("!!");
+		$add_content = $(".admin_content").eq(0).clone();
+		$new_add_content = $(".wrapper_content").append($add_content);
+		$add_content.css("display", "block");
 	});
 });
+/*
+ * validation 
+ */
+function validateion_id(check_value){
+	if (check_value == "") {
+		return "아이디을 입력하세요!\n";
+	}else if(check_value.length < 4){
+		return "아이디는 네 글자 이상입니다.\n"
+	}else if(/[^a-zA-Z0-9]/.test(check_value)){
+		return "아이디에 특수기호 사용은 안됩니다.\n";
+	}
+		
+	return "";
+}
+
+function validateion_password(check_value){
+	if (check_value == ""){
+		return "비밀번호을 입력하세요!\n";
+	}else if(check_value.length < 4){
+		return "비밀번호는 네 글자 이상입니다.\n"
+	}
+	
+	return "";
+}
+
+function validateion_name(check_value){
+	if (check_value == ""){
+		return "이름을 입력하세요!\n";
+	}else if(check_value.length < 2){
+		return "이름는 두 글자 이상입니다.\n"
+	}else if(/[^ㄱ-ㅎ가-힣a-zA-Z]/.test(check_value)){
+		return "이름에 특수기호 사용은 안됩니다.\n";
+	}
+	
+	return "";
+}
+
+function validateion_email(check_value){
+	if (check_value == ""){
+		return "메일을 입력하세요!\n";
+	}else if(/[^a-zA-Z0-9.@_-]/.test(check_value)){
+		return "메일에 특수기호 사용은 안됩니다.\n";
+	}
+	
+	return "";
+}
+
+function validateion_level(check_value){
+	if (check_value == "selected") return "권한을 선택하세요!\n";
+	else return "";
+}
+
+function add_content(obj){
+	console.log("insert_btn click!");
+	$users_id = $(obj).parent().find("input[name='users_id']").val();
+	$users_password = $(obj).parent().find("input[name='users_password']").val();
+	$users_name = $(obj).parent().find("input[name='users_name']").val();
+	$users_email = $(obj).parent().find("input[name='users_email']").val();
+	$users_level = $(obj).parent().find("select[name ='users_level']").val();
+	
+	$vali_str = validateion_id($users_id) + validateion_name($users_name) + 
+			validateion_email($users_email) + validateion_level($users_level);
+	
+	if($vali_str == ""){
+		$.ajax({
+			type : 'POST',
+			data : {
+				users_id:$users_id, 
+				users_password: $users_password, 
+				users_name:$users_name,
+				users_email:$users_email,
+				users_level:$users_level
+				},
+			url : 'http://localhost:8080/php_board/bbs/board/insert_users',
+			success : function(data) {
+				console.log("성공");
+				alert("사용자가 추가 되었습니다.");
+				$(obj).parent().find("input[name='users_id']").val('');
+				$(obj).parent().find("input[name='users_password']").val('');
+				$(obj).parent().find("input[name='users_name']").val('');
+				$(obj).parent().find("input[name='users_email']").val('');
+				$(obj).parent().find("select[name ='users_level']").val('selected');
+			},
+			error : function(data){
+				console.log("실패!");
+			}
+		});
+	}else{
+		alert($vali_str);
+	}
+}	
 
 /*
  * search button click
@@ -152,4 +261,6 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+
 

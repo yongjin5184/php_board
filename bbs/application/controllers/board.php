@@ -42,11 +42,6 @@ Class Board extends CI_Controller {
   }
 
   public function lists($search_word = ""){
-//   	if($search_word != ""){
-// 	  	echo "넘어오는 값 : " . $search_word;
-//   	}
-// 	echo "리스트 페이지: " . $this->uri->segment(5);
-  	
 	$table_name = $this->uri->segment(3);
   	//페이지네이션 라이브러리 로딩 추가
   	$this->load->library('pagination');
@@ -91,7 +86,6 @@ Class Board extends CI_Controller {
  */
   function search(){
   		$search_word = $_POST['search_word'];
-//  		echo $search_word;
   		$this->lists($search_word);
   }
   
@@ -117,14 +111,11 @@ Class Board extends CI_Controller {
   	$my_page = $total_rows - $rownum;
   	$result = $this->board_m->get_view($board_name, $table_name,'board_comment');
   	
-	//넘어오는 rownum , ceil(row / 5) * 5 한 것이 페이지 번호
-	//echo "로우 넘: " . $this->input->post('rownum' , TRUE) . " 전체 로우 : " .$total_rows;
   	$data = array(
   			"result" => $result,
   			"rownum" => $rownum,
   			"my_page" => $my_page
   	);
-  	//var_dump($result[1]);
   	$this->load->view('board/view_v', $data);
   	// id가 null이 아닐때만 댓글 등록 
   	$id = $this->input->post('id', TRUE);
@@ -286,5 +277,26 @@ Class Board extends CI_Controller {
 		);
 		$data = $this->board_m->update_users($modify_data);
 		echo "성공";		
+	}
+	
+	function get_users(){
+		$data = $this->board_m->get_users();
+	}
+	
+	function insert_users(){
+		$users_id =  $this->input->post('users_id');
+		$users_password = $this->input->post('users_password');
+		$en_users_password = $this->encrypt->encode($users_password);
+		$users_name = $this->input->post('users_name');
+		$users_email = $this->input->post('users_email');
+		$users_level = $this->input->post('users_level');
+		$insert_data = array(
+				'users_id' => $users_id, 
+				'users_password' => $en_users_password, 
+				'users_name' => $users_name,
+				'users_email' => $users_email,
+				'users_level' => $users_level
+		);
+		$data = $this->board_m->insert_users($insert_data);
 	}
 }

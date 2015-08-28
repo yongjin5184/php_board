@@ -31,7 +31,6 @@ class Upload extends CI_Controller {
 			);
 			$file_name = $data['file_name'];
 			$users_id = $this->input->post('userid' , TRUE);
-// 			echo "file name = " . $file_name. "users_id = " . $users_id;
 			$result = $this->board_m->insert_users_profile_path($data);
 			echo
   			"<script>

@@ -54,7 +54,7 @@
 						<hr style="border-top: dotted 2px black;"/>
 						<?php if($rs->users_profile_path != ''){?>
 						<img src="<?=$rs->users_profile_path;?>" alt="profile_img" width="42" height="42" alt="smile">
-						<span><?=$rs->bc_users_id;?></span> &nbsp <span><?=$rs->bc_reg_date;?></span> 
+						<span><?=$rs->users_id;?></span> &nbsp <span><?=$rs->bc_reg_date;?></span> 
 						<br/>
 						<span><?=$rs->bc_contents;?></span>
 						<hr style="border-top: dotted 2px black;"/>
@@ -70,8 +70,9 @@
 							 
 							<?php 
 								$session_id = $this->session->userdata['id'];
-								$user_id = $result[0]->users_id;
-								if($session_id == $user_id){
+								$session_level = $this->session->userdata['level'];
+								$users_id = $result[0]->users_id;
+								if($session_id == $users_id || $session_level == 'A'){
 							?>
 								<a
 								href="/php_board/bbs/board/modify/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
@@ -80,9 +81,6 @@
 								href="/php_board/bbs/board/delete/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
 								class="btn btn-danger">삭제</a> 
 							<?php }?>
-							<!-- <a
-							href="/bbs/board/write/<?=$this->uri->segment(3)?>/board_id/<?=$this->uri->segment(5);?>/page/<?=$this->uri->segment(7);?>"
-							class="btn btn-success">쓰기</a>-->
 						</th>
 					</tr>
 				</tfoot>
