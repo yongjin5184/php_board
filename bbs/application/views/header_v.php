@@ -19,9 +19,9 @@
             		<span id="show_login" class="login_span" > | 로그인 | </span>&nbsp;
             	    <span> 
             	    	<?php if(@$this->session->userdata('logged_in') == TRUE){?>
-            				<?php echo $this->session->userdata('username')?>
+            				<?=$this->session->userdata('username')?>
             			 	님 환영합니다. 
-            			 <?php echo "<script>
+            			 <?="<script>
 							$('#show_login').text('| 로그아웃 |');
 							$('#show_login').removeClass('login_span');
 							$('#show_login').addClass('logout_span');
@@ -47,8 +47,8 @@
 			<div id="div_sub_tab">
 				<ul>
 					<li>
-						<a href="/php_board/bbs/<?php echo $this->uri->segment(1);?>/lists/<?php echo $this->uri->segment(3);?>">게시판 프로젝트</a>
-						<a href="/php_board/bbs/board/write/<?php echo $this->uri->segment(3)?>">쓰기</a>
+						<a href="/php_board/bbs/<?=$this->uri->segment(1);?>/lists/<?=$this->uri->segment(3);?>">게시판 프로젝트</a>
+						<a href="/php_board/bbs/board/write/<?=$this->uri->segment(3)?>">쓰기</a>
 						<a id="add_admin_content" class='none'>추가</a>
 					</li>
 				</ul>
@@ -60,22 +60,27 @@
 					<span>사진 : </span><span class="expand">▼expand</span>
 					<form action="http://localhost:8080/php_board/bbs/upload/do_upload" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 					<input type="file" name="userfile" onchange="readURL(this);" size="20" />
-					<input type="hidden" name="userid" value="<?php echo $this->session->userdata('id')?>"/>
+					<input type="hidden" name="userid" value="<?=$this->session->userdata('id')?>"/>
 					<input type="submit" value="upload" />
 					</form>
 				</div>
 				<div class="none">
-					<img id="prev_img" src="/php_board/bbs/include/images/no_pic.jpg" alt="your image"/>
+					<?php if($this->session->userdata('users_profile_path') != ""){?>
+						<img class="prev_img" src="<?= $this->session->userdata('users_profile_path')?>" alt="your image"/>
+					<?php }else{?>
+						<img class="prev_img" src="/php_board/bbs/include/images/no_pic.jpg" alt="your image"/>
+							
+					<?php }?>
 				</div>
 		  		<div class="users_info">
-					<a>이름 : </a><span><?php echo $this->session->userdata('username')?></span>
+					<a>이름 : </a><span><?=$this->session->userdata('username')?></span>
 					<span class="expand">▼expand</span>
 				</div>
 				<div class="none"><label>이름 : </label><input id="input_id" type="text" name="name" />
 					<button class="btn-green" style ="height: 35px;">Save</button>
 				</div>
 				<div class="users_info">
-					<a>이메일 : </a><span><?php echo $this->session->userdata('email')?></span>
+					<a>이메일 : </a><span><?=$this->session->userdata('email')?></span>
 					<span class="expand">▼expand</span>
 				</div>
 				<div class="none"><label>이메일 : </label><input id="input_pw" type="text" name="email"/>

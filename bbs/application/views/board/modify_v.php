@@ -11,13 +11,13 @@
 					<label class="control-label" for="input01">제목</label>
 					<div class="controls">
 						<input type="text" id="input_subject"
-							name="board_subject" value="<?php echo $views[0]->board_subject;?>">
+							name="board_subject" value="<?=$views[0]->board_subject;?>">
 						<p class="help-block"></p>
 					</div>
 					<label class="control-label" for="input02">내용</label>
 					<div class="controls">
 						<textarea id="input02" class="text_area" name="board_contents"
-							cols="150" rows="20"><?php echo $views[0]->board_contents;?></textarea>
+							cols="150" rows="20"><?=$views[0]->board_contents;?></textarea>
 						<p class="help-block"></p>
 					</div>
 					<div class="form-actions">

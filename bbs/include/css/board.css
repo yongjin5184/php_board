@@ -205,7 +205,7 @@ html ul.tab li.active a {
 	border-bottom: 1px solid #000000;
 }
 
-#prev_img {
+.prev_img {
 	width: 120px;
 	height: 100px;
 	float: center;

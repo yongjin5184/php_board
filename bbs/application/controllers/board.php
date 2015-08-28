@@ -241,11 +241,13 @@ Class Board extends CI_Controller {
 			$email = $data['users_email'];
 			$level = $data['users_level'];
 			$id = $data['users_id'];
+			$users_profile_path = $data['users_profile_path'];
 			$sess_array = array(
 				'username' => $username,
 				'email' => $email,
 				'level' =>$level,
 				'id' => $id,
+				'users_profile_path' => $users_profile_path,
 				'logged_in' =>TRUE,
 				'visited_page' => $visited_page
 			);
