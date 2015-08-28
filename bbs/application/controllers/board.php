@@ -74,7 +74,6 @@ Class Board extends CI_Controller {
 //     echo "마이페이지: " . $my_page; // 0, 1, 2, 3
     
     $limit = $config['per_page'];
-//     echo "스타트 전 = ". (ceil($page/$config['per_page'])) ." 스타트 = " .$start;
     $data['list'] = $this->board_m->get_list($this->uri->segment(3), '', $start, $limit, $search_word);
     $data['total_rows'] = $total_rows;
     $data['page'] = $my_page; //2.페이징 변수를 넘겨서 게시판 자동 넘버 처리
@@ -233,7 +232,6 @@ Class Board extends CI_Controller {
 	function auth(){
 		$users_id =  $this->input->post('id');
 		$users_password = $this->input->post('password');
-// 		$encode_password = $this->encrypt->encode($users_password);
 		$data = $this->board_m->select_users($users_id, $users_password);
 		$visited_page = array();
 		if($data != null){
